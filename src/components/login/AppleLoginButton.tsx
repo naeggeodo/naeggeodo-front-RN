@@ -16,19 +16,18 @@ export default AppleLoginButton;
 
 const styles = StyleSheet.create({
   loginButton: {
-    width: 315,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 16,
-    paddingBottom: 16,
+    paddingVertical: '6%',
     borderRadius: 10,
     backgroundColor: `${palette.black}`,
+    marginTop: 10,
   },
   loginText: {
     color: '#ffffff',
     fontSize: 17,
     fontWeight: '400',
-    marginLeft: 10,
   },
 });

@@ -16,14 +16,14 @@ export default NaverLoginButton;
 
 const styles = StyleSheet.create({
   loginButton: {
-    width: 315,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 16,
-    paddingBottom: 16,
+    paddingVertical: '6%',
     borderRadius: 10,
     backgroundColor: `${palette.naverGreen}`,
+    marginTop: 10,
   },
   loginText: {
     color: '#ffffff',
