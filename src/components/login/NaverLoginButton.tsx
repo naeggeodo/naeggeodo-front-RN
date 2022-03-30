@@ -2,6 +2,7 @@ import {Pressable, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import palette from '../../styles/palette';
 import Naver from '../../assets/icons/naverlogo.svg';
+import fonts from '../../styles/fonts';
 
 const NaverLoginButton = () => {
   return (
@@ -26,9 +27,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   loginText: {
+    fontFamily: `${fonts.sqRegular}`,
     color: '#ffffff',
     fontSize: 17,
-    fontWeight: '400',
     marginLeft: 10,
   },
 });

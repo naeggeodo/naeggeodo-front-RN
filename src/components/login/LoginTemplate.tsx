@@ -5,6 +5,7 @@ import NaverLoginButton from './NaverLoginButton';
 import AppleLoginButton from './AppleLoginButton';
 import palette from '../../styles/palette';
 import Prevbtn from '../../assets/icons/prevbtn.svg';
+import fonts from '../../styles/fonts';
 
 const LoginTemplate = () => {
   return (
@@ -22,7 +23,7 @@ const LoginTemplate = () => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <Text style={[styles.loginTitle]}>간편 로그인</Text>
+        <Text style={styles.loginTitle}>간편 로그인</Text>
         <KaKaoLoginButton />
         <NaverLoginButton />
         <AppleLoginButton />
@@ -44,12 +45,14 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   title: {
+    fontFamily: `${fonts.sqBold}`,
     fontSize: 26,
     color: `${palette.black}`,
     fontWeight: '700',
   },
   subTitle: {
-    fontSize: 18,
+    fontFamily: `${fonts.sqRegular}`,
+    fontSize: 17,
     marginTop: 30,
     color: `${palette.black}`,
     fontWeight: '400',
@@ -66,12 +69,12 @@ const styles = StyleSheet.create({
     }),
   },
   loginTitle: {
+    fontFamily: `${fonts.sqRegular}`,
     position: 'absolute',
     left: '36.5%',
     top: '-4%',
     backgroundColor: '#ffffff',
     paddingHorizontal: 15,
-    fontWeight: '500',
     fontSize: 12,
     color: `${palette.DarkGray}`,
   },

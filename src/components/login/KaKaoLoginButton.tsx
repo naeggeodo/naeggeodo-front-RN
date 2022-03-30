@@ -2,6 +2,7 @@ import {Pressable, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import palette from '../../styles/palette';
 import KaKao_talk from '../../assets/icons/kakao_talk.svg';
+import fonts from '../../styles/fonts';
 
 const KaKaoLoginButton = () => {
   return (
@@ -25,8 +26,8 @@ const styles = StyleSheet.create({
     backgroundColor: `${palette.kakaoYellow}`,
   },
   loginText: {
+    fontFamily: `${fonts.sqRegular}`,
     fontSize: 17,
-    fontWeight: '400',
     marginLeft: 10,
   },
 });
