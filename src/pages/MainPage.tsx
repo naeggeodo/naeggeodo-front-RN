@@ -1,12 +1,13 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import MainTemplate from '../components/main/MainTemplate';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const MainPage = () => {
   return (
-    <View>
+    <SafeAreaView>
       <MainTemplate />
-    </View>
+    </SafeAreaView>
   );
 };
 
