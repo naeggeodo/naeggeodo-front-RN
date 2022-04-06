@@ -1,26 +1,23 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import Location from '../../assets/icons/location.svg';
 import palette from '../../styles/palette';
 import ArrowRight from '../../assets/icons/arrow_right.svg';
 import SlideCategory from './SlideCategory';
 import SearchLocationWebViewTemplate from '../search-location-web-view/SearchLocationWebViewTemplate';
+import {useDispatchSearchLocation} from '../../hooks/useDispatchSeachLocation';
 
 const MainTemplate = () => {
-  const [webviewIsOpened, setWebview] = useState(false);
-
-  const openWebview = () => {
-    setWebview(true);
-  };
-
-  const closeWebview = () => {
-    setWebview(false);
-  };
+  const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
+    useDispatchSearchLocation();
 
   return (
     <View style={styles.container}>
       {webviewIsOpened && (
-        <SearchLocationWebViewTemplate closeWebView={closeWebview} />
+        <SearchLocationWebViewTemplate
+          handleLocation={handleLocation}
+          closeWebview={closeWebview}
+        />
       )}
       <View style={styles.buttonContainer}>
         <Pressable style={styles.searchLocationButton} onPress={openWebview}>

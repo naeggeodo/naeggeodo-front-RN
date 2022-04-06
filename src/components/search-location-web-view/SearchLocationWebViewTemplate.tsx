@@ -1,21 +1,13 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useCallback} from 'react';
+import React from 'react';
 import Postcode from '@actbase/react-daum-postcode';
-import {useAppDispatch} from '../../store';
-import locationSlice from '../../slices/location';
-import {OnCompleteParams} from '@actbase/react-daum-postcode/lib/types';
 import palette from '../../styles/palette';
+import {UseSearchLocationProps} from '../../hooks/useDispatchSeachLocation';
 
-const SearchLocationWebViewTemplate = ({closeWebView, webview}: any) => {
-  const dispatch = useAppDispatch();
-  const handleLocation = useCallback<(data: OnCompleteParams) => void>(data => {
-    dispatch(
-      locationSlice.actions.searchLocation({
-        address: JSON.stringify(data.address),
-      }),
-    );
-  }, []);
-
+const SearchLocationWebViewTemplate = ({
+  closeWebview,
+  handleLocation,
+}: UseSearchLocationProps) => {
   return (
     <>
       <View style={styles.backgroundBlack}></View>
@@ -26,7 +18,7 @@ const SearchLocationWebViewTemplate = ({closeWebView, webview}: any) => {
           jsOptions={{animation: true}}
           onSelected={handleLocation}
         />
-        <Pressable style={styles.closeButton} onPress={closeWebView}>
+        <Pressable style={styles.closeButton} onPress={closeWebview}>
           <Text style={{color: 'white', fontSize: 16}}>닫기</Text>
         </Pressable>
       </View>
