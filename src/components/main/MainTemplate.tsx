@@ -7,15 +7,21 @@ import SlideCategory from './SlideCategory';
 import SearchLocationWebViewTemplate from '../search-location-web-view/SearchLocationWebViewTemplate';
 
 const MainTemplate = () => {
-  const [webview, setWebview] = useState(false);
+  const [webviewIsOpened, setWebview] = useState(false);
 
   const openWebview = () => {
     setWebview(true);
   };
 
+  const closeWebview = () => {
+    setWebview(false);
+  };
+
   return (
     <View style={styles.container}>
-      {webview && <SearchLocationWebViewTemplate />}
+      {webviewIsOpened && (
+        <SearchLocationWebViewTemplate closeWebView={closeWebview} />
+      )}
       <View style={styles.buttonContainer}>
         <Pressable style={styles.searchLocationButton} onPress={openWebview}>
           <View style={styles.labelContainer}>
