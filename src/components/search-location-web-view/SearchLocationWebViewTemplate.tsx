@@ -1,8 +1,10 @@
-import {Alert, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Alert, StyleSheet, View} from 'react-native';
+import React, {useCallback} from 'react';
 import Postcode from '@actbase/react-daum-postcode';
 
 const SearchLocationWebViewTemplate = () => {
+  const handleLocation = useCallback(data => {}, []);
+
   return (
     <>
       <View style={styles.backgroundBlack}></View>
