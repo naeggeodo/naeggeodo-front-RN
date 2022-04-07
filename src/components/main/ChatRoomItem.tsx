@@ -4,6 +4,7 @@ import React from 'react';
 import Burger from '../../assets/icons/burger.svg';
 import BlacKArrow from '../../assets/icons/blackArrowRight.svg';
 import palette from '../../styles/palette';
+import fonts from '../../styles/fonts';
 
 const ChatRoomItem = ({
   title,
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   title: {
     color: `${palette.black}`,
     fontSize: 15,
-    fontWeight: '400',
+    fontFamily: `${fonts.sqRegular}`,
     marginTop: 5,
     lineHeight: 20,
   },
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginTop: 5,
     fontSize: 12,
+    fontFamily: `${fonts.sqRegular}`,
   },
   timeContainer: {
     flexDirection: 'row',
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
   },
   timeText: {
     color: `${palette.DarkGray}`,
+    fontFamily: `${fonts.sqRegular}`,
     fontSize: 12,
   },
 
@@ -98,5 +101,7 @@ const styles = StyleSheet.create({
   orderTogetherText: {
     color: `${palette.black}`,
     fontSize: 12,
+    fontFamily: `${fonts.sqRegular}`,
+    paddingBottom: 1,
   },
 });
