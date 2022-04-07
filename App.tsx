@@ -25,6 +25,7 @@ import fonts from './src/styles/fonts';
 import palette from './src/styles/palette';
 import {Provider} from 'react-redux';
 import store from './src/store';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -42,86 +43,90 @@ export type RootStackParamList = {
 };
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        {isLoggedIn ? (
-          <Tab.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-              tabBarStyle: {
-                borderTopStartRadius: 20,
-                borderTopEndRadius: 20,
-                borderColor: `${palette.LineGray}`,
-                height: 83,
-                backgroundColor: 'white',
-              },
-              headerShown: false,
-
-              tabBarActiveTintColor: `${palette.black}`,
-              tabBarInactiveTintColor: `${palette.LineGray}`,
-              tabBarLabelStyle: {
-                fontFamily: `${fonts.sqRegular}`,
-                fontSize: 11,
-              },
-            }}>
-            <Tab.Screen
-              name="Home"
-              component={MainPage}
-              options={{
-                title: '홈',
-                tabBarIcon: ({focused}) =>
-                  focused ? <HomeBlack /> : <HomeGray />,
-              }}
-            />
-            <Tab.Screen
-              name="Search"
-              component={SearchPage}
-              options={{
-                title: '검색',
-                tabBarIcon: ({focused}) =>
-                  focused ? <SearchBlack /> : <SearchGray />,
-              }}
-            />
-            <Tab.Screen
-              name="Orders"
-              component={OrderPage}
-              options={{
-                title: '내꺼도 생성',
-                tabBarIcon: ({focused}) =>
-                  focused ? <PlusBlack /> : <PlusGray />,
-              }}
-            />
-            <Tab.Screen
-              name="Chattings"
-              component={ChatRoomPage}
-              options={{
-                title: '내꺼도',
-                tabBarIcon: ({focused}) =>
-                  focused ? <ChatBlack /> : <ChatGray />,
-              }}
-            />
-            <Tab.Screen
-              name="More"
-              component={MorePage}
-              options={{
-                title: '전체',
-                tabBarIcon: ({focused}) =>
-                  focused ? <MoreBlack /> : <MoreGray />,
-              }}
-            />
-          </Tab.Navigator>
-        ) : (
-          <Stack.Navigator>
-            <Stack.Screen
-              name="SignIn"
-              component={LoginPage}
-              options={{title: '로그인'}}
-            />
-          </Stack.Navigator>
-        )}
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          {isLoggedIn ? (
+            <Tab.Navigator
+              initialRouteName="Home"
+              screenOptions={{
+                tabBarStyle: {
+                  borderTopStartRadius: 20,
+                  borderTopEndRadius: 20,
+                  borderColor: `${palette.LineGray}`,
+                  height: 83,
+                  backgroundColor: 'white',
+                },
+                headerShown: false,
+                tabBarActiveTintColor: `${palette.black}`,
+                tabBarInactiveTintColor: `${palette.LineGray}`,
+                tabBarLabelStyle: {
+                  fontFamily: `${fonts.sqRegular}`,
+                  fontSize: 11,
+                },
+              }}>
+              <Tab.Screen
+                name="Home"
+                component={MainPage}
+                options={{
+                  title: '홈',
+                  tabBarIcon: ({focused}) =>
+                    focused ? <HomeBlack /> : <HomeGray />,
+                }}
+              />
+              <Tab.Screen
+                name="Search"
+                component={SearchPage}
+                options={{
+                  title: '검색',
+                  tabBarIcon: ({focused}) =>
+                    focused ? <SearchBlack /> : <SearchGray />,
+                }}
+              />
+              <Tab.Screen
+                name="Orders"
+                component={OrderPage}
+                options={{
+                  title: '내꺼도 생성',
+                  tabBarIcon: ({focused}) =>
+                    focused ? <PlusBlack /> : <PlusGray />,
+                }}
+              />
+              <Tab.Screen
+                name="Chattings"
+                component={ChatRoomPage}
+                options={{
+                  title: '내꺼도',
+                  tabBarIcon: ({focused}) =>
+                    focused ? <ChatBlack /> : <ChatGray />,
+                }}
+              />
+              <Tab.Screen
+                name="More"
+                component={MorePage}
+                options={{
+                  title: '전체',
+                  tabBarIcon: ({focused}) =>
+                    focused ? <MoreBlack /> : <MoreGray />,
+                }}
+              />
+            </Tab.Navigator>
+          ) : (
+            <Stack.Navigator>
+              <Stack.Screen
+                name="SignIn"
+                component={LoginPage}
+                options={{
+                  title: '로그인',
+                  headerShown: false,
+                }}
+              />
+            </Stack.Navigator>
+          )}
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 }

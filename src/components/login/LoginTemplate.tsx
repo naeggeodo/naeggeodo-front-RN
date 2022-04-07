@@ -6,29 +6,32 @@ import AppleLoginButton from './AppleLoginButton';
 import palette from '../../styles/palette';
 import Prevbtn from '../../assets/icons/prevbtn.svg';
 import fonts from '../../styles/fonts';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const LoginTemplate = () => {
   return (
-    <View style={styles.container}>
-      <View>
-        <Pressable>
-          <Prevbtn />
-        </Pressable>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>로그인하여</Text>
-          <Text style={styles.title}>내꺼도의 모든 서비스를</Text>
-          <Text style={styles.title}>이용하세요.</Text>
+    <SafeAreaView style={{backgroundColor: '#ffffff'}}>
+      <View style={styles.container}>
+        <View>
+          <Pressable>
+            <Prevbtn />
+          </Pressable>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>로그인하여</Text>
+            <Text style={styles.title}>내꺼도의 모든 서비스를</Text>
+            <Text style={styles.title}>이용하세요.</Text>
+          </View>
+          <Text style={styles.subTitle}>우리동네 배달비 반값 플랫폼</Text>
         </View>
-        <Text style={styles.subTitle}>우리동네 배달비 반값 플랫폼</Text>
-      </View>
 
-      <View style={styles.buttonContainer}>
-        <Text style={styles.loginTitle}>간편 로그인</Text>
-        <KaKaoLoginButton />
-        <NaverLoginButton />
-        <AppleLoginButton />
+        <View style={styles.buttonContainer}>
+          <Text style={styles.loginTitle}>간편 로그인</Text>
+          <KaKaoLoginButton />
+          <NaverLoginButton />
+          <AppleLoginButton />
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -40,6 +43,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     paddingHorizontal: '10%',
     justifyContent: 'space-between',
+    ...Platform.select({
+      android: {
+        paddingVertical: '5%',
+      },
+    }),
   },
   titleContainer: {
     marginTop: 30,
