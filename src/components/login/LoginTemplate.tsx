@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     }),
   },
   titleContainer: {
-    marginTop: 30,
+    marginTop: 39,
   },
   title: {
     fontFamily: `${fonts.sqBold}`,

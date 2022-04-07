@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Location from '../../assets/icons/location.svg';
 import palette from '../../styles/palette';
@@ -6,6 +6,23 @@ import ArrowRight from '../../assets/icons/arrow_right.svg';
 import SlideCategory from './SlideCategory';
 import SearchLocationWebViewTemplate from '../search-location-web-view/SearchLocationWebViewTemplate';
 import {useDispatchSearchLocation} from '../../hooks/useDispatchSeachLocation';
+import ChatRoomItem from './ChatRoomItem';
+
+const ChatInfo = [
+  {id: '1', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '2', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '3', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '4', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '5', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '6', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '7', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '8', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '9', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '10', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '11', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '12', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+  {id: '13', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
+];
 
 const MainTemplate = () => {
   const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
@@ -29,6 +46,20 @@ const MainTemplate = () => {
         </Pressable>
       </View>
       <SlideCategory />
+
+      <FlatList
+        style={{width: '100%'}}
+        keyExtractor={item => item.id}
+        data={ChatInfo}
+        renderItem={({item}) => (
+          <ChatRoomItem
+            title={item.title}
+            time={item.time}
+            total={item.total}
+            count={item.count}
+          />
+        )}
+      />
     </View>
   );
 };
@@ -40,6 +71,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#ffffff',
     height: '100%',
+    width: '100%',
   },
 
   buttonContainer: {

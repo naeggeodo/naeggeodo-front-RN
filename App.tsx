@@ -43,7 +43,7 @@ export type RootStackParamList = {
 };
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
   return (
     <Provider store={store}>
       <SafeAreaProvider>
@@ -56,7 +56,6 @@ function App() {
                   borderTopStartRadius: 20,
                   borderTopEndRadius: 20,
                   borderColor: `${palette.LineGray}`,
-                  height: 83,
                   backgroundColor: 'white',
                 },
                 headerShown: false,
