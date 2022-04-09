@@ -7,8 +7,9 @@ import SlideCategory from './SlideCategory';
 import SearchLocationWebViewTemplate from '../search-location-web-view/SearchLocationWebViewTemplate';
 import {useDispatchSearchLocation} from '../../hooks/useDispatchSeachLocation';
 import ChatRoomItem from './ChatRoomItem';
+import {ChatRoomInfoProps} from './mainTypes';
 
-const ChatInfo = [
+const ChatInfo: ChatRoomInfoProps[] = [
   {id: '1', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
   {id: '2', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
   {id: '3', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
@@ -48,11 +49,12 @@ const MainTemplate = () => {
       <SlideCategory />
 
       <FlatList
-        style={{width: '100%'}}
+        style={{paddingHorizontal: 30, marginBottom: '25%'}}
         keyExtractor={item => item.id}
         data={ChatInfo}
-        renderItem={({item}) => (
+        renderItem={({item}: {item: ChatRoomInfoProps}) => (
           <ChatRoomItem
+            id={item.id}
             title={item.title}
             time={item.time}
             total={item.total}
