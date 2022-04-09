@@ -5,22 +5,15 @@ import Burger from '../../assets/icons/burger.svg';
 import BlacKArrow from '../../assets/icons/blackArrowRight.svg';
 import palette from '../../styles/palette';
 import fonts from '../../styles/fonts';
+import {ChatRoomInfoProps} from './mainTypes';
 
-const ChatRoomItem = ({
-  title,
-  count,
-  total,
-  time,
-}: {
-  title: string;
-  count: number;
-  total: number;
-  time: number;
-}) => {
+const ChatRoomItem = ({title, count, total, time}: ChatRoomInfoProps) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.pressableContainer}>
-        <Burger />
+        <View style={styles.imgWrapper}>
+          <Burger />
+        </View>
 
         <View style={styles.textInfoContainer}>
           <Text style={styles.title}>{title}</Text>
@@ -54,10 +47,14 @@ const styles = StyleSheet.create({
   },
   pressableContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
+  imgWrapper: {
+    width: '20%',
+  },
   textInfoContainer: {
-    marginLeft: 10,
+    width: '77%',
   },
   title: {
     color: `${palette.black}`,
@@ -75,10 +72,9 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    justifyContent: 'space-between',
     marginTop: 5,
-    width: '74%',
   },
   timeBadge: {
     paddingHorizontal: 5,
