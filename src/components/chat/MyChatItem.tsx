@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     color: `${palette.DarkGray}`,
   },
   myChatItem: {
-    width: 144,
+    maxWidth: 220,
     marginLeft: 4,
     backgroundColor: '#ffffff',
 
