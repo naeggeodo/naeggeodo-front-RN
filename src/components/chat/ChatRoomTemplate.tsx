@@ -1,18 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import MyChatItem from './MyChatItem';
-import OtherChatItem from './OtherChatItem';
+import ChatRoomInfo from './ChatRoomInfo';
 
 const ChatRoomTemplate = () => {
   return (
     <View style={styles.template}>
-      <MyChatItem />
-      <OtherChatItem />
+      <ChatRoomInfo />
     </View>
   );
 };
-
-export default ChatRoomTemplate;
 
 const styles = StyleSheet.create({
   template: {
@@ -20,3 +16,5 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
+
+export default ChatRoomTemplate;
