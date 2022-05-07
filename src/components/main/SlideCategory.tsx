@@ -1,32 +1,38 @@
 import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {categoryMockData} from '../../data/mainMockDatas';
 import palette from '../../styles/palette';
 import fonts from '../../styles/fonts';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/reducer';
+import {convertEngCategoryToKor, FoodCategory} from '../../slices/categories';
 
 const SlideCategory = () => {
-  const [category, setCategory] = useState('전체');
+  const [category, setCategory] = useState<FoodCategory>('ALL');
+  const foodCategories = useSelector(
+    (state: RootState) => state.categories.foodCategories,
+  );
+
   return (
     <View style={styles.container}>
       <FlatList
         showsHorizontalScrollIndicator={false}
-        keyExtractor={item => item.id + ''}
+        keyExtractor={item => item.idx + ''}
         horizontal
         contentContainerStyle={styles.track}
-        data={categoryMockData}
+        data={foodCategories}
         snapToAlignment="center"
         decelerationRate={0}
         renderItem={({item}) => (
           <Pressable
             style={styles.categoryItemButton}
-            onPress={() => setCategory(item.name)}>
+            onPress={() => setCategory(item.category)}>
             <Text
               style={
-                category === item.name
+                category === item.category
                   ? styles.categoryPoint
                   : styles.categoryItem
               }>
-              {item.name}
+              {convertEngCategoryToKor(item.category)}
             </Text>
           </Pressable>
         )}></FlatList>

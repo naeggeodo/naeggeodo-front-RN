@@ -8,7 +8,9 @@ import SearchLocationWebViewTemplate from '../search-location-web-view/SearchLoc
 import {useDispatchSearchLocation} from '../../hooks/useDispatchSeachLocation';
 import ChatRoomItem from './ChatRoomItem';
 import {ChatRoomInfoProps} from './mainTypes';
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
+import {useAppDispatch} from '../../store';
+import categoriesSlice from '../../slices/categories';
 
 const ChatInfo: ChatRoomInfoProps[] = [
   {id: '1', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
@@ -29,11 +31,22 @@ const ChatInfo: ChatRoomInfoProps[] = [
 const MainTemplate = () => {
   const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
     useDispatchSearchLocation();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get('http://3.38.33.232:9090/categories');
-      console.log(response);
+      try {
+        const response: AxiosResponse = await axios.get(
+          'http://3.38.33.232:9090/categories',
+        );
+        dispatch(
+          categoriesSlice.actions.getFoodCategories({
+            foodCategories: response.data.categories,
+          }),
+        );
+      } catch (err) {
+        console.error('error #%d', err);
+      }
     })();
   }, []);
 
