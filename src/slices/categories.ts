@@ -16,7 +16,7 @@ export type FoodCategory =
   | 'FASTFOOD'
   | 'HAMBURGER';
 
-interface FoodCategoryResponse {
+export interface FoodCategoryResponse {
   idx: number;
   category: FoodCategory;
 }

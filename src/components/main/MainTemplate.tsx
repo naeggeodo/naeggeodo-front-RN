@@ -10,7 +10,8 @@ import ChatRoomItem from './ChatRoomItem';
 import {ChatRoomInfoProps} from './mainTypes';
 import axios, {AxiosResponse} from 'axios';
 import {useAppDispatch} from '../../store';
-import categoriesSlice from '../../slices/categories';
+import categoriesSlice, {FoodCategoryResponse} from '../../slices/categories';
+import chatRoomSlice, {ChatRoomResponse} from '../../slices/chatRoom';
 
 const ChatInfo: ChatRoomInfoProps[] = [
   {id: '1', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
@@ -36,9 +37,8 @@ const MainTemplate = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response: AxiosResponse = await axios.get(
-          'http://3.38.33.232:9090/categories',
-        );
+        const response: AxiosResponse<{categories: FoodCategoryResponse[]}> =
+          await axios.get('http://3.38.33.232:9090/categories');
         dispatch(
           categoriesSlice.actions.getFoodCategories({
             foodCategories: response.data.categories,
@@ -49,6 +49,24 @@ const MainTemplate = () => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response: AxiosResponse<{['chat-room']: ChatRoomResponse[]}> =
+          await axios.get(
+            'http://3.38.33.232:9090/chat/rooms?buildingcode=서울',
+          );
+        dispatch(
+          chatRoomSlice.actions.getChatRooms({
+            chatRooms: response.data['chat-room'],
+          }),
+        );
+      } catch (err) {
+        console.error('error #%d', err);
+      }
+    })();
+  });
 
   return (
     <View style={styles.container}>
