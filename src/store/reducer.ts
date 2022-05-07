@@ -6,7 +6,7 @@ import locationSlice from '../slices/location';
 const rootReducer = combineReducers({
   location: locationSlice.reducer,
   categories: categoriesSlice.reducer,
-  chatRooms: chatRoomSlice.reducer,
+  chatRoom: chatRoomSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

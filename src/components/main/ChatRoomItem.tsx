@@ -5,9 +5,20 @@ import Burger from '../../assets/icons/burger.svg';
 import BlacKArrow from '../../assets/icons/blackArrowRight.svg';
 import palette from '../../styles/palette';
 import fonts from '../../styles/fonts';
-import {ChatRoomInfoProps} from './mainTypes';
 
-const ChatRoomItem = ({title, count, total, time}: ChatRoomInfoProps) => {
+const ChatRoomItem = ({
+  id,
+  title,
+  maxCount,
+  currentCount,
+  createDate,
+}: {
+  id: number;
+  title: string;
+  maxCount: number;
+  currentCount: number;
+  createDate: string;
+}) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.pressableContainer}>
@@ -18,12 +29,12 @@ const ChatRoomItem = ({title, count, total, time}: ChatRoomInfoProps) => {
         <View style={styles.textInfoContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.peopleCount}>
-            인원 {count}명 / {total}명
+            인원 {maxCount}명 / {currentCount}명
           </Text>
 
           <View style={styles.timeContainer}>
             <View style={styles.timeBadge}>
-              <Text style={styles.timeText}>{time}분 전</Text>
+              <Text style={styles.timeText}>{createDate}분 전</Text>
             </View>
             <View style={styles.orderTogetherContainer}>
               <Text style={styles.orderTogetherText}>함께 주문하기</Text>

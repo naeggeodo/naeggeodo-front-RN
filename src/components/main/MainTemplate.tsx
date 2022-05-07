@@ -1,19 +1,22 @@
 import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
-import Location from '../../assets/icons/location.svg';
+import axios, {AxiosResponse} from 'axios';
+
 import palette from '../../styles/palette';
+import Location from '../../assets/icons/location.svg';
 import ArrowRight from '../../assets/icons/arrow_right.svg';
-import SlideCategory from './SlideCategory';
+
 import SearchLocationWebViewTemplate from '../search-location-web-view/SearchLocationWebViewTemplate';
 import {useDispatchSearchLocation} from '../../hooks/useDispatchSeachLocation';
-import ChatRoomItem from './ChatRoomItem';
-import {ChatRoomInfoProps} from './mainTypes';
-import axios, {AxiosResponse} from 'axios';
 import {useAppDispatch} from '../../store';
 import categoriesSlice, {FoodCategoryResponse} from '../../slices/categories';
 import chatRoomSlice, {ChatRoomResponse} from '../../slices/chatRoom';
+import SlideCategory from './SlideCategory';
+import ChatRoomItem from './ChatRoomItem';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/reducer';
 
-const ChatInfo: ChatRoomInfoProps[] = [
+const ChatInfo = [
   {id: '1', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
   {id: '2', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
   {id: '3', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
@@ -33,6 +36,7 @@ const MainTemplate = () => {
   const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
     useDispatchSearchLocation();
   const dispatch = useAppDispatch();
+  const chatRooms = useSelector((state: RootState) => state.chatRoom.chatRooms);
 
   useEffect(() => {
     (async () => {
@@ -89,15 +93,15 @@ const MainTemplate = () => {
 
       <FlatList
         style={{paddingHorizontal: 30, marginBottom: '25%'}}
-        keyExtractor={item => item.id}
-        data={ChatInfo}
-        renderItem={({item}: {item: ChatRoomInfoProps}) => (
+        keyExtractor={item => item.id + ''}
+        data={chatRooms}
+        renderItem={({item}: {item: ChatRoomResponse}) => (
           <ChatRoomItem
             id={item.id}
             title={item.title}
-            time={item.time}
-            total={item.total}
-            count={item.count}
+            maxCount={item.maxCount}
+            currentCount={item.currentCount}
+            createDate={item.createDate}
           />
         )}
       />
