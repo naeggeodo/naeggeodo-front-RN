@@ -1,10 +1,12 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-import Burger from '../../assets/icons/burger.svg';
-import BlacKArrow from '../../assets/icons/blackArrowRight.svg';
 import palette from '../../styles/palette';
 import fonts from '../../styles/fonts';
+import Burger from '../../assets/icons/burger.svg';
+import BlacKArrow from '../../assets/icons/blackArrowRight.svg';
+
+import TimeCalculator from '../../utils/TimeCalculator';
 
 const ChatRoomItem = ({
   id,
@@ -19,6 +21,8 @@ const ChatRoomItem = ({
   currentCount: number;
   createDate: string;
 }) => {
+  const timeCalculator = new TimeCalculator(createDate);
+
   return (
     <View style={styles.container}>
       <Pressable style={styles.pressableContainer}>
@@ -34,7 +38,9 @@ const ChatRoomItem = ({
 
           <View style={styles.timeContainer}>
             <View style={styles.timeBadge}>
-              <Text style={styles.timeText}>{createDate}분 전</Text>
+              <Text style={styles.timeText}>
+                {timeCalculator.calculateCreateMinute()}
+              </Text>
             </View>
             <View style={styles.orderTogetherContainer}>
               <Text style={styles.orderTogetherText}>함께 주문하기</Text>
