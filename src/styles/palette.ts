@@ -4,6 +4,7 @@ export default {
   Gray: '#c9c9c9',
   LineGray: '#E0E0E0',
   LightGray: '#EBEBEB',
+  LightGray2: '#f5f5f5',
   bgGray: '#f2f2f8',
   mainOrange: '#FF7B30',
   kakaoYellow: '#FFE812',

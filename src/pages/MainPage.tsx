@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import React from 'react';
 import MainTemplate from '../components/main/MainTemplate';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -12,5 +11,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-
-const styles = StyleSheet.create({});

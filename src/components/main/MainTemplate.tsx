@@ -16,22 +16,6 @@ import ChatRoomItem from './ChatRoomItem';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/reducer';
 
-const ChatInfo = [
-  {id: '1', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '2', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '3', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '4', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '5', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '6', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '7', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '8', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '9', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '10', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '11', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '12', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-  {id: '13', title: '이마트 백석 버거킹점', count: 1, total: 2, time: 34},
-];
-
 const MainTemplate = () => {
   const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
     useDispatchSearchLocation();
@@ -70,7 +54,7 @@ const MainTemplate = () => {
         console.error('error #%d', err);
       }
     })();
-  });
+  }, []);
 
   return (
     <View style={styles.container}>
