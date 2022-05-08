@@ -1,6 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import palette from '../../styles/palette';
+
+import File from '../../assets/icons/file.svg';
+import ChatIcon from '../../assets/icons/chaticon.svg';
+import Warning from '../../assets/icons/warning.svg';
+import DocumentGray from '../../assets/icons/documentGray.svg';
+import UserIcon from '../../assets/icons/userIcon.svg';
 
 const MoreTemplate = () => {
   return (
@@ -26,6 +32,34 @@ const MoreTemplate = () => {
         </View>
       </View>
       <View style={styles.breakLine}></View>
+
+      <View style={styles.sectionContainer}>
+        <Text style={styles.csTitle}>고객센터</Text>
+        <Pressable style={styles.buttonStyle}>
+          <File />
+          <Text style={styles.buttonText}>공지사항</Text>
+        </Pressable>
+        <Pressable style={styles.buttonStyle}>
+          <ChatIcon />
+          <Text style={styles.buttonText}>건의사항</Text>
+        </Pressable>
+        <Pressable style={styles.buttonStyle}>
+          <Warning />
+          <Text style={styles.buttonText}>신고내역 확인</Text>
+        </Pressable>
+      </View>
+
+      <View style={[styles.sectionContainer, {marginTop: 30}]}>
+        <Text style={styles.csTitle}>이용약관</Text>
+        <Pressable style={styles.buttonStyle}>
+          <DocumentGray />
+          <Text style={styles.buttonText}>이용약관</Text>
+        </Pressable>
+        <Pressable style={styles.buttonStyle}>
+          <UserIcon />
+          <Text style={styles.buttonText}>개인정보 처리방침</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -74,8 +108,32 @@ const styles = StyleSheet.create({
   breakLine: {
     borderWidth: 3,
     borderColor: `${palette.LightGray2}`,
+    opacity: 0.5,
     marginTop: 20,
     marginBottom: 30,
+  },
+  buttonStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 16,
+    paddingVertical: 15,
+    borderRadius: 5,
+  },
+  csTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: `${palette.textGray}`,
+    marginBottom: 8,
+    paddingLeft: 8,
+  },
+  buttonText: {
+    fontWeight: '500',
+    fontSize: 15,
+    marginLeft: 14,
+    color: '#000000',
+  },
+  sectionContainer: {
+    paddingHorizontal: 16,
   },
 });
 

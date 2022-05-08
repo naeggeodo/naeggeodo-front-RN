@@ -2,6 +2,7 @@ export default {
   black: '#191919',
   DarkGray: '#696969',
   Gray: '#c9c9c9',
+  textGray: '#c4c4c4',
   LineGray: '#E0E0E0',
   LightGray: '#EBEBEB',
   LightGray2: '#f5f5f5',
