@@ -72,7 +72,7 @@ const NaggeodoTabNavigator = () => {
           name="Orders"
           component={OrderPage}
           options={{
-            title: '내꺼도 생성',
+            title: '내꺼톡 생성',
             tabBarIcon: ({focused}) => (focused ? <PlusBlack /> : <PlusGray />),
           }}
         />
@@ -80,7 +80,7 @@ const NaggeodoTabNavigator = () => {
           name="Chattings"
           component={ChatRoomPage}
           options={{
-            title: '내꺼도',
+            title: '내꺼톡',
             tabBarIcon: ({focused}) => (focused ? <ChatBlack /> : <ChatGray />),
           }}
         />
@@ -88,7 +88,7 @@ const NaggeodoTabNavigator = () => {
           name="More"
           component={MorePage}
           options={{
-            title: '전체',
+            title: '더보기',
             tabBarIcon: ({focused}) => (focused ? <MoreBlack /> : <MoreGray />),
           }}
         />
