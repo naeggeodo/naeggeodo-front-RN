@@ -1,5 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeBlack from '../../assets/icons/homeblack.svg';
 import HomeGray from '../../assets/icons/homegray.svg';
