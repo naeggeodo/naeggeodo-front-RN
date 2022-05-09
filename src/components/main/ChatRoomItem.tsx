@@ -14,12 +14,14 @@ const ChatRoomItem = ({
   maxCount,
   currentCount,
   createDate,
+  navigation,
 }: {
   id: number;
   title: string;
   maxCount: number;
   currentCount: number;
   createDate: string;
+  navigation: any;
 }) => {
   const timeCalculator = new TimeCalculator(createDate);
 
@@ -42,10 +44,12 @@ const ChatRoomItem = ({
                 {timeCalculator.calculateCreateMinute()}
               </Text>
             </View>
-            <View style={styles.orderTogetherContainer}>
+            <Pressable
+              onPress={() => navigation.navigate(`chatRoom`)}
+              style={styles.orderTogetherContainer}>
               <Text style={styles.orderTogetherText}>함께 주문하기</Text>
               <BlacKArrow width={14} height={20} style={{marginLeft: 2}} />
-            </View>
+            </Pressable>
           </View>
         </View>
       </Pressable>

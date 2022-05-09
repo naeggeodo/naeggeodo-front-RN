@@ -12,7 +12,8 @@ const ChatRoomTemplate = () => {
 
 const styles = StyleSheet.create({
   template: {
-    backgroundColor: 'pink',
+    backgroundColor: 'black',
+    opacity: 0.5,
     height: '100%',
   },
 });
