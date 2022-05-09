@@ -2,7 +2,7 @@ import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 import palette from '../../styles/palette';
 
-const OrderInfoScreen = () => {
+const OrderInfoScreen = ({navigation}: {navigation: any}) => {
   const [counter, setCounter] = useState(1);
   const [storeLink, setStoreLink] = useState('http://');
 
@@ -18,7 +18,12 @@ const OrderInfoScreen = () => {
             }}>
             <Text style={styles.orangeTitle}>새로입력</Text>
           </View>
-          <Text style={styles.grayTitle}>주문목록</Text>
+          <Pressable
+            onPress={() => {
+              navigation.navigate('Naeggeotalk');
+            }}>
+            <Text style={styles.grayTitle}>주문목록</Text>
+          </Pressable>
         </View>
 
         <View style={styles.storeNameContainer}>

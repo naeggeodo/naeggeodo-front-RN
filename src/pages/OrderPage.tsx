@@ -1,4 +1,3 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import OrderTemplate from '../components/order/OrderTemplate';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -12,5 +11,3 @@ const OrderPage = () => {
 };
 
 export default OrderPage;
-
-const styles = StyleSheet.create({});

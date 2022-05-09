@@ -1,6 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeBlack from '../../assets/icons/homeblack.svg';
 import HomeGray from '../../assets/icons/homegray.svg';
@@ -12,13 +11,13 @@ import ChatGray from '../../assets/icons/chatgray.svg';
 import ChatBlack from '../../assets/icons/chatblack.svg';
 import MoreGray from '../../assets/icons/moregray.svg';
 import MoreBlack from '../../assets/icons/moreblack.svg';
-import ChatRoomPage from '../../pages/ChatRoomPage';
 import MainPage from '../../pages/MainPage';
 import MorePage from '../../pages/MorePage';
 import OrderPage from '../../pages/OrderPage';
 import SearchPage from '../../pages/SearchPage';
 import fonts from '../../styles/fonts';
 import palette from '../../styles/palette';
+import NaeggeotalkPage from '../../pages/NaeggeotalkPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -78,8 +77,8 @@ const NaggeodoTabNavigator = () => {
           }}
         />
         <Tab.Screen
-          name="Chattings"
-          component={ChatRoomPage}
+          name="Naeggeotalk"
+          component={NaeggeotalkPage}
           options={{
             title: '내꺼톡',
             tabBarIcon: ({focused}) => (focused ? <ChatBlack /> : <ChatGray />),
