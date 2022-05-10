@@ -1,9 +1,10 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
-import palette from '../../styles/palette';
-import {useAppDispatch} from '../../store';
-import orderSlice, {OrderType, orderTypeSelector} from '../../slices/order';
+import React from 'react';
 import {useSelector} from 'react-redux';
+import {useAppDispatch} from '../../store';
+
+import palette from '../../styles/palette';
+import orderSlice, {OrderType, orderTypeSelector} from '../../slices/order';
 
 const OrderTemplate = ({navigation}: {navigation: any}) => {
   const dispatch = useAppDispatch();

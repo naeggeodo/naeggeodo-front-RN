@@ -1,10 +1,14 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 import palette from '../../styles/palette';
+import {useAppDispatch} from '../../store';
+import orderSlice, {storeLinkSelector} from '../../slices/order';
+import {useSelector} from 'react-redux';
 
 const OrderInfoScreen = ({navigation}: {navigation: any}) => {
   const [counter, setCounter] = useState(1);
-  const [storeLink, setStoreLink] = useState('http://');
+  const dispatch = useAppDispatch();
+  const storeLink = useSelector(storeLinkSelector);
 
   return (
     <View style={styles.container}>
@@ -38,6 +42,9 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
             </Text>
           </View>
           <TextInput
+            onChange={e =>
+              dispatch(orderSlice.actions.typeStoreName(e.nativeEvent.text))
+            }
             style={styles.storeNameTextInput}
             placeholder="가게이름을 입력해주세요."></TextInput>
         </View>
@@ -53,10 +60,12 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
         <View style={styles.storeNameContainer}>
           <Text style={styles.subTitle}>가게 링크</Text>
           <TextInput
-            style={styles.storeNameTextInput}
             value={storeLink}
+            style={styles.storeNameTextInput}
             autoCapitalize="none"
-            onChange={e => setStoreLink(() => e.nativeEvent.text)}
+            onChange={e =>
+              dispatch(orderSlice.actions.typeStoreLink(e.nativeEvent.text))
+            }
           />
         </View>
 

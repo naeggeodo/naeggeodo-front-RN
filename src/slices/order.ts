@@ -24,7 +24,7 @@ export interface OrderStates {
 const initialState: OrderStates = {
   orderType: '',
   storeName: '',
-  storeLink: '',
+  storeLink: 'http://',
   tags: [],
   maxCount: 1,
 };
@@ -36,13 +36,28 @@ const orderSlice = createSlice({
     selectOrderType: (state, action: PayloadAction<OrderType>) => {
       state.orderType = action.payload;
     },
+    typeStoreName: (state, action: PayloadAction<string>) => {
+      state.storeName = action.payload;
+    },
+    typeStoreLink: (state, action: PayloadAction<string>) => {
+      state.storeLink = action.payload;
+    },
   },
 });
 
 const selfSelector = (state: RootState) => state.order;
+
 export const orderTypeSelector = createDraftSafeSelector(
   selfSelector,
   state => state.orderType,
+);
+export const storeNameSelector = createDraftSafeSelector(
+  selfSelector,
+  state => state.storeName,
+);
+export const storeLinkSelector = createDraftSafeSelector(
+  selfSelector,
+  state => state.storeLink,
 );
 
 export default orderSlice;
