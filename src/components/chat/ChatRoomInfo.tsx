@@ -3,10 +3,13 @@ import React from 'react';
 import Burger from '../../assets/icons/burger.svg';
 import ChevronLeft from '../../assets/icons/chevronleft.svg';
 import BurgerBar from '../../assets/icons/burgerbar.svg';
+import palette from '../../styles/palette';
 
 const ChatRoomInfo = () => {
   return (
     <View style={styles.container}>
+      <View style={styles.backgroundBlack}></View>
+
       <View style={styles.arrowContainer}>
         <Pressable style={{padding: 10}}>
           <ChevronLeft />
@@ -36,6 +39,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 13,
+    height: 80,
+    position: 'relative',
+    zIndex: 10,
   },
   arrowContainer: {
     flexDirection: 'row',
@@ -60,6 +66,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
     color: '#ffffff',
+  },
+  backgroundBlack: {
+    backgroundColor: `${palette.black}`,
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    zIndex: -1,
+
+    position: 'absolute',
+    height: '100%',
   },
 });
 

@@ -1,16 +1,18 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import palette from '../../styles/palette';
-
-type OrderTime =
-  | '1시간 이내'
-  | '최대한 빨리'
-  | '상관없음(인원이 모집되는대로)'
-  | '선택하지 않음'
-  | '';
+import {useAppDispatch} from '../../store';
+import orderSlice, {OrderType, orderTypeSelector} from '../../slices/order';
+import {useSelector} from 'react-redux';
 
 const OrderTemplate = ({navigation}: {navigation: any}) => {
-  const [orderTime, setOrderTime] = useState<OrderTime>('');
+  const dispatch = useAppDispatch();
+  const orderType = useSelector(orderTypeSelector);
+
+  const dispatchOrderType = (orderType: OrderType) => {
+    dispatch(orderSlice.actions.selectOrderType(orderType));
+    navigation.navigate('orderInfo');
+  };
 
   return (
     <View style={styles.container}>
@@ -35,16 +37,13 @@ const OrderTemplate = ({navigation}: {navigation: any}) => {
         <Pressable
           style={[
             {...styles.buttonStyle},
-            orderTime === '1시간 이내' ? styles.selected : styles.unselected,
+            orderType === '1시간 이내' ? styles.selected : styles.unselected,
           ]}
-          onPress={() => {
-            setOrderTime('1시간 이내');
-            navigation.navigate('orderInfo');
-          }}>
+          onPress={() => dispatchOrderType('1시간 이내')}>
           <Text
             style={[
               {...styles.buttonText},
-              orderTime === '1시간 이내'
+              orderType === '1시간 이내'
                 ? styles.selectedText
                 : styles.unselectedText,
             ]}>
@@ -56,16 +55,13 @@ const OrderTemplate = ({navigation}: {navigation: any}) => {
           style={[
             {...styles.buttonStyle},
             {marginTop: 10},
-            orderTime === '최대한 빨리' ? styles.selected : styles.unselected,
+            orderType === '최대한 빨리' ? styles.selected : styles.unselected,
           ]}
-          onPress={() => {
-            setOrderTime('최대한 빨리');
-            navigation.navigate('orderInfo');
-          }}>
+          onPress={() => dispatchOrderType('최대한 빨리')}>
           <Text
             style={[
               {...styles.buttonText},
-              orderTime === '최대한 빨리'
+              orderType === '최대한 빨리'
                 ? styles.selectedText
                 : styles.unselectedText,
             ]}>
@@ -77,18 +73,15 @@ const OrderTemplate = ({navigation}: {navigation: any}) => {
           style={[
             {...styles.buttonStyle},
             {marginTop: 10},
-            orderTime === '상관없음(인원이 모집되는대로)'
+            orderType === '상관없음(인원이 모집되는대로)'
               ? styles.selected
               : styles.unselected,
           ]}
-          onPress={() => {
-            setOrderTime('상관없음(인원이 모집되는대로)');
-            navigation.navigate('orderInfo');
-          }}>
+          onPress={() => dispatchOrderType('상관없음(인원이 모집되는대로)')}>
           <Text
             style={[
               {...styles.buttonText},
-              orderTime === '상관없음(인원이 모집되는대로)'
+              orderType === '상관없음(인원이 모집되는대로)'
                 ? styles.selectedText
                 : styles.unselectedText,
             ]}>
@@ -100,16 +93,13 @@ const OrderTemplate = ({navigation}: {navigation: any}) => {
           style={[
             {...styles.buttonStyle},
             {marginTop: 10},
-            orderTime === '선택하지 않음' ? styles.selected : styles.unselected,
+            orderType === '선택하지 않음' ? styles.selected : styles.unselected,
           ]}
-          onPress={() => {
-            setOrderTime('선택하지 않음');
-            navigation.navigate('orderInfo');
-          }}>
+          onPress={() => dispatchOrderType('선택하지 않음')}>
           <Text
             style={[
               {...styles.buttonText},
-              orderTime === '선택하지 않음'
+              orderType === '선택하지 않음'
                 ? styles.selectedText
                 : styles.unselectedText,
             ]}>

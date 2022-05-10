@@ -81,6 +81,7 @@ const NaggeodoTabNavigator = () => {
           component={NaeggeotalkPage}
           options={{
             title: '내꺼톡',
+
             tabBarIcon: ({focused}) => (focused ? <ChatBlack /> : <ChatGray />),
           }}
         />
