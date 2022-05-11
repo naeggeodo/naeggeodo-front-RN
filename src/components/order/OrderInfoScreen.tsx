@@ -1,14 +1,25 @@
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
-import React, {useState} from 'react';
+import {
+  Animated,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import palette from '../../styles/palette';
 import {useAppDispatch} from '../../store';
-import orderSlice, {storeLinkSelector} from '../../slices/order';
+import orderSlice, {
+  storeLinkSelector,
+  storeNameSelector,
+} from '../../slices/order';
 import {useSelector} from 'react-redux';
 
 const OrderInfoScreen = ({navigation}: {navigation: any}) => {
   const [counter, setCounter] = useState(1);
   const dispatch = useAppDispatch();
   const storeLink = useSelector(storeLinkSelector);
+  const storeName = useSelector(storeNameSelector);
 
   return (
     <View style={styles.container}>
@@ -122,7 +133,13 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
       </View>
 
       <View style={{paddingHorizontal: 24}}>
-        <Pressable style={styles.createButton}>
+        <Pressable
+          style={[
+            styles.createButton,
+            storeName.length > 2
+              ? {backgroundColor: `${palette.black}`}
+              : {backgroundColor: `${palette.textGray}`},
+          ]}>
           <Text style={{fontWeight: '500', color: '#ffffff', fontSize: 17}}>
             내꺼톡 생성하기
           </Text>
@@ -207,14 +224,13 @@ const styles = StyleSheet.create({
   buttonBlackText: {
     color: `${palette.black}`,
   },
-
   createButton: {
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 85,
     paddingVertical: 14,
-    backgroundColor: `${palette.LineGray}`,
     borderRadius: 10,
+    borderRightColor: 'red',
   },
 });
 
