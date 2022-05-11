@@ -6,20 +6,21 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import palette from '../../styles/palette';
 import {useAppDispatch} from '../../store';
 import orderSlice, {
+  maxCountSelector,
   storeLinkSelector,
   storeNameSelector,
 } from '../../slices/order';
 import {useSelector} from 'react-redux';
 
 const OrderInfoScreen = ({navigation}: {navigation: any}) => {
-  const [counter, setCounter] = useState(1);
   const dispatch = useAppDispatch();
   const storeLink = useSelector(storeLinkSelector);
   const storeName = useSelector(storeNameSelector);
+  const maxCount = useSelector(maxCountSelector);
 
   return (
     <View style={styles.container}>
@@ -96,34 +97,28 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
 
           <Pressable style={styles.counter}>
             <Pressable
-              onPress={() => {
-                if (counter <= 1) return;
-                setCounter(counter => counter - 1);
-              }}
+              onPress={() => dispatch(orderSlice.actions.minusMaxCount())}
               style={styles.plusMinusButton}>
               <Text
                 style={[
                   styles.plusMinusText,
-                  counter > 1 ? styles.buttonBlackText : styles.buttonGrayText,
+                  maxCount > 1 ? styles.buttonBlackText : styles.buttonGrayText,
                 ]}>
                 -
               </Text>
             </Pressable>
             <View>
               <Text style={[styles.plusMinusText, {marginHorizontal: 20}]}>
-                {counter}
+                {maxCount}
               </Text>
             </View>
             <Pressable
-              onPress={() => {
-                if (counter >= 5) return;
-                setCounter(counter => counter + 1);
-              }}
+              onPress={() => dispatch(orderSlice.actions.plusMaxCount())}
               style={styles.plusMinusButton}>
               <Text
                 style={[
                   styles.plusMinusText,
-                  counter < 5 ? styles.buttonBlackText : styles.buttonGrayText,
+                  maxCount < 5 ? styles.buttonBlackText : styles.buttonGrayText,
                 ]}>
                 +
               </Text>

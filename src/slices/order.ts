@@ -42,11 +42,18 @@ const orderSlice = createSlice({
     typeStoreLink: (state, action: PayloadAction<string>) => {
       state.storeLink = action.payload;
     },
+    minusMaxCount: state => {
+      if (state.maxCount <= 1) return;
+      else state.maxCount -= 1;
+    },
+    plusMaxCount: state => {
+      if (state.maxCount >= 5) return;
+      else state.maxCount += 1;
+    },
   },
 });
 
 const selfSelector = (state: RootState) => state.order;
-
 export const orderTypeSelector = createDraftSafeSelector(
   selfSelector,
   state => state.orderType,
@@ -58,6 +65,10 @@ export const storeNameSelector = createDraftSafeSelector(
 export const storeLinkSelector = createDraftSafeSelector(
   selfSelector,
   state => state.storeLink,
+);
+export const maxCountSelector = createSelector(
+  selfSelector,
+  state => state.maxCount,
 );
 
 export default orderSlice;
