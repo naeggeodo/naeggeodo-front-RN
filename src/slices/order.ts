@@ -25,7 +25,13 @@ const initialState: OrderStates = {
   orderType: '',
   storeName: '',
   storeLink: 'http://',
-  tags: [],
+  tags: [
+    '버거킹',
+    '떡복기',
+    '햄버거',
+    '피자',
+    '안녕하세요오오오오오오오오오오오오오오오오오오오오',
+  ],
   maxCount: 1,
 };
 
@@ -70,5 +76,6 @@ export const maxCountSelector = createSelector(
   selfSelector,
   state => state.maxCount,
 );
+export const tagsSelector = createSelector(selfSelector, state => state.tags);
 
 export default orderSlice;

@@ -1,11 +1,4 @@
-import {
-  Animated,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 import palette from '../../styles/palette';
 import {useAppDispatch} from '../../store';
@@ -13,14 +6,17 @@ import orderSlice, {
   maxCountSelector,
   storeLinkSelector,
   storeNameSelector,
+  tagsSelector,
 } from '../../slices/order';
 import {useSelector} from 'react-redux';
+import TagClose from '../../assets/icons/tagclose.svg';
 
 const OrderInfoScreen = ({navigation}: {navigation: any}) => {
   const dispatch = useAppDispatch();
   const storeLink = useSelector(storeLinkSelector);
   const storeName = useSelector(storeNameSelector);
   const maxCount = useSelector(maxCountSelector);
+  const tags = useSelector(tagsSelector);
 
   return (
     <View style={styles.container}>
@@ -41,7 +37,6 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
             <Text style={styles.grayTitle}>주문목록</Text>
           </Pressable>
         </View>
-
         <View style={styles.storeNameContainer}>
           <View style={styles.essentialText}>
             <Text style={styles.subTitle}>가게명</Text>
@@ -60,7 +55,6 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
             style={styles.storeNameTextInput}
             placeholder="가게이름을 입력해주세요."></TextInput>
         </View>
-
         <View
           style={{
             borderBottomWidth: 1,
@@ -68,7 +62,6 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
             marginTop: 20,
           }}
         />
-
         <View style={styles.storeNameContainer}>
           <Text style={styles.subTitle}>가게 링크</Text>
           <TextInput
@@ -80,7 +73,36 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
             }
           />
         </View>
+        <View style={styles.storeNameContainer}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={styles.subTitle}>태그</Text>
+            <Text style={{fontSize: 12, fontWeight: '500', marginLeft: 10}}>
+              ex. 음식명, 카테고리명
+            </Text>
+          </View>
 
+          <TextInput
+            style={styles.storeNameTextInput}
+            placeholder="태그를 입력해주세요."
+          />
+
+          <View style={styles.tagContainer}>
+            {tags.map((tag, index) => (
+              <Pressable key={index} style={styles.tagButton}>
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '500',
+                    color: `${palette.black}`,
+                    marginRight: 4,
+                  }}>
+                  {tag}
+                </Text>
+                <TagClose />
+              </Pressable>
+            ))}
+          </View>
+        </View>
         <View
           style={{
             borderBottomWidth: 1,
@@ -88,7 +110,6 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
             marginTop: 20,
           }}
         />
-
         <View style={styles.counterContainer}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={styles.subTitle}>채팅방 입장 인원</Text>
@@ -190,6 +211,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 24,
     marginTop: 20,
+  },
+  tagContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  tagButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: `${palette.LightGray2}`,
+    borderRadius: 5,
+    marginRight: 8,
+    marginTop: 13,
+    paddingVertical: 4,
+    paddingHorizontal: 10,
   },
   maxCounter: {
     fontWeight: '500',
