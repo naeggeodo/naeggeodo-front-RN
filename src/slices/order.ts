@@ -25,13 +25,7 @@ const initialState: OrderStates = {
   orderType: '',
   storeName: '',
   storeLink: 'http://',
-  tags: [
-    '버거킹',
-    '떡복기',
-    '햄버거',
-    '피자',
-    '안녕하세요오오오오오오오오오오오오오오오오오오오오',
-  ],
+  tags: [],
   maxCount: 1,
 };
 
@@ -55,6 +49,12 @@ const orderSlice = createSlice({
     plusMaxCount: state => {
       if (state.maxCount >= 5) return;
       else state.maxCount += 1;
+    },
+    addTag: (state, action: PayloadAction<string>) => {
+      state.tags.push(action.payload);
+    },
+    removeTag: (state, action: PayloadAction<number>) => {
+      state.tags = state.tags.filter((_, index) => action.payload !== index);
     },
   },
 });

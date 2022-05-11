@@ -12,6 +12,7 @@ import {useSelector} from 'react-redux';
 import TagClose from '../../assets/icons/tagclose.svg';
 
 const OrderInfoScreen = ({navigation}: {navigation: any}) => {
+  const [tagText, setTagText] = useState('');
   const dispatch = useAppDispatch();
   const storeLink = useSelector(storeLinkSelector);
   const storeName = useSelector(storeNameSelector);
@@ -84,11 +85,25 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
           <TextInput
             style={styles.storeNameTextInput}
             placeholder="태그를 입력해주세요."
+            value={tagText}
+            onChange={e => setTagText(e.nativeEvent.text)}
+            onKeyPress={e => {
+              if (
+                e.nativeEvent.key === ' ' &&
+                tags.length < 5 &&
+                tagText !== ''
+              ) {
+                dispatch(orderSlice.actions.addTag(tagText));
+              } else return;
+            }}
           />
 
           <View style={styles.tagContainer}>
             {tags.map((tag, index) => (
-              <Pressable key={index} style={styles.tagButton}>
+              <Pressable
+                key={index}
+                style={styles.tagButton}
+                onPress={() => dispatch(orderSlice.actions.removeTag(index))}>
                 <Text
                   style={{
                     fontSize: 12,
