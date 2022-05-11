@@ -5,13 +5,13 @@ import ChevronLeft from '../../assets/icons/chevronleft.svg';
 import BurgerBar from '../../assets/icons/burgerbar.svg';
 import palette from '../../styles/palette';
 
-const ChatRoomInfo = () => {
+const ChatRoomInfo = ({navigation}: {navigation: any}) => {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundBlack}></View>
 
       <View style={styles.arrowContainer}>
-        <Pressable style={{padding: 10}}>
+        <Pressable style={{padding: 10}} onPress={() => navigation.goBack()}>
           <ChevronLeft />
         </Pressable>
         <View style={styles.titleContainer}>

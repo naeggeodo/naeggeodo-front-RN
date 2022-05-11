@@ -4,12 +4,12 @@ import ChatRoomInfo from './ChatRoomInfo';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import palette from '../../styles/palette';
 
-const ChatRoomTemplate = () => {
+const ChatRoomTemplate = ({navigation}: {navigation: any}) => {
   return (
     <SafeAreaView style={{backgroundColor: `${palette.black}`}}>
       <StatusBar barStyle="light-content" />
       <View style={styles.template}>
-        <ChatRoomInfo />
+        <ChatRoomInfo navigation={navigation} />
       </View>
     </SafeAreaView>
   );
