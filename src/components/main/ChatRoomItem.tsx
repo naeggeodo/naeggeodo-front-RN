@@ -45,7 +45,7 @@ const ChatRoomItem = ({
               </Text>
             </View>
             <Pressable
-              onPress={() => navigation.navigate('chatRoom', {id})}
+              onPress={() => navigation.push('chatRoom', {id})}
               style={styles.orderTogetherContainer}>
               <Text style={styles.orderTogetherText}>함께 주문하기</Text>
               <BlacKArrow width={14} height={20} style={{marginLeft: 2}} />
@@ -56,8 +56,6 @@ const ChatRoomItem = ({
     </View>
   );
 };
-
-export default ChatRoomItem;
 
 const styles = StyleSheet.create({
   container: {
@@ -121,3 +119,4 @@ const styles = StyleSheet.create({
     paddingBottom: 1,
   },
 });
+export default ChatRoomItem;

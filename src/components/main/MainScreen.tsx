@@ -17,11 +17,25 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../store/reducer';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const MainTemplate = ({navigation}: {navigation: any}) => {
+const MainScreen = ({
+  navigation,
+  route,
+  showTab,
+  hideTab,
+}: {
+  navigation: any;
+  route: any;
+  showTab: () => void;
+  hideTab: (check: 'chatroom' | 'mainscreen') => void;
+}) => {
   const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
     useDispatchSearchLocation();
   const dispatch = useAppDispatch();
   const chatRooms = useSelector((state: RootState) => state.chatRoom.chatRooms);
+
+  useEffect(() => {
+    hideTab('mainscreen');
+  }, [route, navigation]);
 
   useEffect(() => {
     (async () => {
@@ -97,8 +111,6 @@ const MainTemplate = ({navigation}: {navigation: any}) => {
   );
 };
 
-export default MainTemplate;
-
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
@@ -129,3 +141,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default MainScreen;

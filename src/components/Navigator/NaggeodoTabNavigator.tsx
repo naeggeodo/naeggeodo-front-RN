@@ -53,10 +53,13 @@ const NaggeodoTabNavigator = () => {
         <Tab.Screen
           name="Home"
           component={MainStack}
-          options={({route}) => ({
-            title: '홈',
-            tabBarIcon: ({focused}) => (focused ? <HomeBlack /> : <HomeGray />),
-          })}
+          options={({route}) => {
+            return {
+              title: '홈',
+              tabBarIcon: ({focused}) =>
+                focused ? <HomeBlack /> : <HomeGray />,
+            };
+          }}
         />
         <Tab.Screen
           name="Search"

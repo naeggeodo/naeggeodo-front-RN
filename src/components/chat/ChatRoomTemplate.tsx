@@ -1,21 +1,25 @@
 import {Pressable, StatusBar, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import ChatRoomInfo from './ChatRoomInfo';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import palette from '../../styles/palette';
 import ArrowRight from '../../assets/icons/arrow_right.svg';
-import BottomDrawer from 'react-native-bottom-drawer';
-
-const TAB_BAR_HEIGHT = 49;
 
 const ChatRoomTemplate = ({
   navigation,
   route,
+  hideTab,
+  showTab,
 }: {
   navigation: any;
   route: any;
+  hideTab: (check: 'chatroom' | 'mainscreen') => void;
+  showTab: () => void;
 }) => {
-  console.log(route);
+  useEffect(() => {
+    hideTab('chatroom');
+  }, [navigation, route]);
+
   return (
     <SafeAreaView style={{backgroundColor: `${palette.black}`}}>
       <StatusBar barStyle="light-content" />
@@ -30,12 +34,6 @@ const ChatRoomTemplate = ({
             </Pressable>
           </View>
         </View>
-        <BottomDrawer
-          shadow={false}
-          containerHeight={206}
-          offset={TAB_BAR_HEIGHT}>
-          <Text>dddddd</Text>
-        </BottomDrawer>
       </View>
     </SafeAreaView>
   );

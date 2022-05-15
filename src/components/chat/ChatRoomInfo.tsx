@@ -11,7 +11,7 @@ const ChatRoomInfo = ({navigation}: {navigation: any}) => {
       <View style={styles.backgroundBlack}></View>
 
       <View style={styles.arrowContainer}>
-        <Pressable style={{padding: 10}} onPress={() => navigation.goBack()}>
+        <Pressable style={{padding: 10}} onPress={() => navigation.pop()}>
           <ChevronLeft />
         </Pressable>
         <View style={styles.titleContainer}>
