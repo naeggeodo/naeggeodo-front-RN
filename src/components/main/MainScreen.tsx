@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
   container: {
     position: 'relative',
     backgroundColor: '#ffffff',
-    height: '100%',
     width: '100%',
   },
 
