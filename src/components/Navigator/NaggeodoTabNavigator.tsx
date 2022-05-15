@@ -11,7 +11,7 @@ import ChatGray from '../../assets/icons/chatgray.svg';
 import ChatBlack from '../../assets/icons/chatblack.svg';
 import MoreGray from '../../assets/icons/moregray.svg';
 import MoreBlack from '../../assets/icons/moreblack.svg';
-import MainPage from '../../pages/MainPage';
+import MainStack from '../../pages/MainStack';
 import MorePage from '../../pages/MorePage';
 import OrderPage from '../../pages/OrderPage';
 import SearchPage from '../../pages/SearchPage';
@@ -42,7 +42,6 @@ const NaggeodoTabNavigator = () => {
             paddingTop: 10,
             height: 83,
           },
-
           headerShown: false,
           tabBarActiveTintColor: `${palette.black}`,
           tabBarInactiveTintColor: `${palette.LineGray}`,
@@ -53,7 +52,7 @@ const NaggeodoTabNavigator = () => {
         }}>
         <Tab.Screen
           name="Home"
-          component={MainPage}
+          component={MainStack}
           options={{
             title: '홈',
             tabBarIcon: ({focused}) => (focused ? <HomeBlack /> : <HomeGray />),
@@ -81,7 +80,6 @@ const NaggeodoTabNavigator = () => {
           component={NaeggeotalkPage}
           options={{
             title: '내꺼톡',
-
             tabBarIcon: ({focused}) => (focused ? <ChatBlack /> : <ChatGray />),
           }}
         />
