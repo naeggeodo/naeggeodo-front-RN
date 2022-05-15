@@ -5,7 +5,14 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import palette from '../../styles/palette';
 import ArrowRight from '../../assets/icons/arrow_right.svg';
 
-const ChatRoomTemplate = ({navigation}: {navigation: any}) => {
+const ChatRoomTemplate = ({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: any;
+}) => {
+  console.log(route);
   return (
     <SafeAreaView style={{backgroundColor: `${palette.black}`}}>
       <StatusBar barStyle="light-content" />

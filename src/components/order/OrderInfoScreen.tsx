@@ -182,13 +182,15 @@ const OrderInfoScreen = ({navigation}: {navigation: any}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '100%',
     justifyContent: 'space-between',
+    paddingBottom: 20,
     paddingTop: 46,
     backgroundColor: '#ffffff',
   },
   titleContainer: {
     flexDirection: 'row',
+    paddingTop: 46,
     paddingHorizontal: 24,
   },
   orangeTitle: {

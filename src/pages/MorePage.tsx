@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import MoreTemplate from '../components/more/MoreTemplate';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -10,7 +10,5 @@ const MorePage = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default MorePage;

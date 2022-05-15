@@ -45,7 +45,7 @@ const ChatRoomItem = ({
               </Text>
             </View>
             <Pressable
-              onPress={() => navigation.navigate(`chatRoom`)}
+              onPress={() => navigation.navigate('chatRoom', {id})}
               style={styles.orderTogetherContainer}>
               <Text style={styles.orderTogetherText}>함께 주문하기</Text>
               <BlacKArrow width={14} height={20} style={{marginLeft: 2}} />

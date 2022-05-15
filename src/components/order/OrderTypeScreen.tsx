@@ -117,6 +117,9 @@ export default OrderTemplate;
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    paddingTop: 46,
+    paddingBottom: 20,
+
     justifyContent: 'space-between',
     backgroundColor: '#ffffff',
   },
