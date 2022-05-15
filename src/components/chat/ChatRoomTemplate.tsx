@@ -1,11 +1,20 @@
-import {Pressable, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import React, {useEffect} from 'react';
+import {Route} from '@react-navigation/native';
 import ChatRoomInfo from './ChatRoomInfo';
+import {StackProps} from '../../pages/MainStack';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import palette from '../../styles/palette';
+import Plus from '../../assets/icons/plus.svg';
+import Send from '../../assets/icons/send.svg';
 import ArrowRight from '../../assets/icons/arrow_right.svg';
-import {Route} from '@react-navigation/native';
-import {StackProps} from '../../pages/MainStack';
 
 const ChatRoomTemplate = ({
   navigation,
@@ -33,6 +42,16 @@ const ChatRoomTemplate = ({
               <ArrowRight />
             </Pressable>
           </View>
+        </View>
+
+        <View style={styles.textInputContainer}>
+          <Pressable style={styles.pressableStyle}>
+            <Plus />
+          </Pressable>
+          <TextInput style={styles.textInputStyle} />
+          <Pressable style={styles.pressableStyle}>
+            <Send />
+          </Pressable>
         </View>
       </View>
     </SafeAreaView>
@@ -66,6 +85,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
+  },
+  textInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    height: 56,
+  },
+  textInputStyle: {
+    flex: 1,
+    height: 34,
+    paddingLeft: 10,
+    backgroundColor: `${palette.bgGray}`,
+    borderRadius: 10,
+  },
+  pressableStyle: {
+    paddingHorizontal: 10.5,
+    paddingVertical: 13.5,
   },
 });
 
