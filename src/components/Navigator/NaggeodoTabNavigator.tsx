@@ -13,11 +13,11 @@ import MoreGray from '../../assets/icons/moregray.svg';
 import MoreBlack from '../../assets/icons/moreblack.svg';
 import MainStack from '../../pages/MainStack';
 import MorePage from '../../pages/MorePage';
-import OrderPage from '../../pages/OrderPage';
 import SearchPage from '../../pages/SearchPage';
 import fonts from '../../styles/fonts';
 import palette from '../../styles/palette';
 import NaeggeotalkPage from '../../pages/NaeggeotalkPage';
+import OrderStack from '../../pages/OrderStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -69,7 +69,7 @@ const NaggeodoTabNavigator = () => {
         />
         <Tab.Screen
           name="Orders"
-          component={OrderPage}
+          component={OrderStack}
           options={{
             title: '내꺼톡 생성',
             tabBarIcon: ({focused}) => (focused ? <PlusBlack /> : <PlusGray />),
