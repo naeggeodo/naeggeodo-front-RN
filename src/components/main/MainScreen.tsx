@@ -16,17 +16,17 @@ import ChatRoomItem from './ChatRoomItem';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/reducer';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {Route} from '@react-navigation/native';
+import {StackProps} from '../../pages/MainStack';
 
 const MainScreen = ({
   navigation,
   route,
-  showTab,
-  hideTab,
+  checkTab,
 }: {
   navigation: any;
   route: any;
-  showTab: () => void;
-  hideTab: (check: 'chatroom' | 'mainscreen') => void;
+  checkTab: (route: Route<StackProps>) => void;
 }) => {
   const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
     useDispatchSearchLocation();
@@ -34,7 +34,7 @@ const MainScreen = ({
   const chatRooms = useSelector((state: RootState) => state.chatRoom.chatRooms);
 
   useEffect(() => {
-    hideTab('mainscreen');
+    checkTab(route);
   }, [route, navigation]);
 
   useEffect(() => {
@@ -103,6 +103,7 @@ const MainScreen = ({
               maxCount={item.maxCount}
               currentCount={item.currentCount}
               createDate={item.createDate}
+              route={route}
             />
           )}
         />
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'relative',
     backgroundColor: '#ffffff',
+    paddingBottom: 200,
     width: '100%',
   },
 

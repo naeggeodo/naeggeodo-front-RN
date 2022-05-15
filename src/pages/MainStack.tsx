@@ -1,20 +1,41 @@
-import {useRoute} from '@react-navigation/native';
+import {Route} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import ChatRoomTemplate from '../components/chat/ChatRoomTemplate';
 import MainScreen from '../components/main/MainScreen';
+import palette from '../styles/palette';
 
 const Stack = createNativeStackNavigator();
+export type StackProps = 'Home' | 'chatRoom' | 'chat-list';
 
-const MainStack = ({navigation}: {navigation: any}) => {
-  const hideTab = (check: 'chatroom' | 'mainscreen') => {
-    if (check === 'mainscreen') {
+const MainStack = ({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: Route<StackProps>;
+}) => {
+  const checkTab = (routes: Route<StackProps>) => {
+    if (routes.name === 'Home') {
       navigation.setOptions({
         tabBarStyle: {
           display: 'flex',
+          borderRightWidth: 1,
+          borderLeftWidth: 1,
+          borderColor: `${palette.LineGray}`,
+          borderTopStartRadius: 20,
+          borderTopEndRadius: 20,
+          position: 'absolute',
+          overflow: 'hidden',
+          left: 0,
+          bottom: 0,
+          right: 0,
+          paddingBottom: 25,
+          paddingTop: 10,
+          height: 83,
         },
       });
-    } else if (check === 'chatroom') {
+    } else if (routes.name === 'chatRoom') {
       navigation.setOptions({
         tabBarStyle: {
           display: 'none',
@@ -23,27 +44,23 @@ const MainStack = ({navigation}: {navigation: any}) => {
     }
   };
 
-  const showTab = () => {};
-
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="chat-list"
-        children={({navigation, route}) => (
+        children={() => (
           <MainScreen
             navigation={navigation}
             route={route}
-            showTab={showTab}
-            hideTab={hideTab}
+            checkTab={checkTab}
           />
         )}
       />
       <Stack.Screen
         name="chatRoom"
-        children={({navigation, route}) => (
+        children={({route}) => (
           <ChatRoomTemplate
-            hideTab={hideTab}
-            showTab={showTab}
+            checkTab={checkTab}
             navigation={navigation}
             route={route}
           />

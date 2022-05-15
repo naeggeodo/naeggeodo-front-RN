@@ -4,20 +4,20 @@ import ChatRoomInfo from './ChatRoomInfo';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import palette from '../../styles/palette';
 import ArrowRight from '../../assets/icons/arrow_right.svg';
+import {Route} from '@react-navigation/native';
+import {StackProps} from '../../pages/MainStack';
 
 const ChatRoomTemplate = ({
   navigation,
   route,
-  hideTab,
-  showTab,
+  checkTab,
 }: {
   navigation: any;
-  route: any;
-  hideTab: (check: 'chatroom' | 'mainscreen') => void;
-  showTab: () => void;
+  route: Route<StackProps>;
+  checkTab: (route: Route<StackProps>) => void;
 }) => {
   useEffect(() => {
-    hideTab('chatroom');
+    checkTab(route);
   }, [navigation, route]);
 
   return (
