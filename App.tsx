@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 // pages import
-import LoginPage from './src/pages/LoginPage';
+import LoginScreen from './src/pages/LoginScreen';
 import NaggeodoTabNavigator from './src/components/Navigator/NaggeodoTabNavigator';
 
 import {Provider} from 'react-redux';
@@ -26,7 +26,7 @@ export type RootStackParamList = {
 };
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   return (
     <Provider store={store}>
       <SafeAreaProvider>
@@ -37,7 +37,7 @@ function App() {
             <Stack.Navigator>
               <Stack.Screen
                 name="SignIn"
-                component={LoginPage}
+                component={LoginScreen}
                 options={{
                   title: '로그인',
                   headerShown: false,
