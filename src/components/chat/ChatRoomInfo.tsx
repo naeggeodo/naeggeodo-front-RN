@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 13,
-    height: 80,
+    height: 70,
     position: 'relative',
     zIndex: 10,
   },

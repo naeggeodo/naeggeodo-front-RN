@@ -18,7 +18,11 @@ const MyChatItem = () => {
 export default MyChatItem;
 
 const styles = StyleSheet.create({
-  container: {flexDirection: 'row'},
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: 16,
+  },
   timeWrapper: {
     justifyContent: 'flex-end',
   },

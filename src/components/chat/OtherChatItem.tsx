@@ -26,6 +26,7 @@ export default OtherChatItem;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    paddingBottom: 10,
   },
   thumbnailWrapper: {justifyContent: 'flex-end'},
   chatItem: {
