@@ -63,6 +63,15 @@ const ChatRoomTemplate = ({
           <Text>hello</Text>
           <Text>hello</Text>
         </View>
+        <View style={styles.textInputContainer}>
+          <Pressable style={styles.pressableStyle}>
+            <Plus />
+          </Pressable>
+          <TextInput style={styles.textInputStyle} multiline={true} />
+          <Pressable style={styles.pressableStyle}>
+            <Send />
+          </Pressable>
+        </View>
       </SafeAreaView>
     </Fragment>
   );
@@ -99,13 +108,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#ffffff',
-    width: '100%',
     paddingVertical: 8.5,
+    paddingHorizontal: 10,
   },
   textInputStyle: {
     flex: 1,
-    height: 40,
+    height: 34,
     paddingLeft: 10,
+    paddingTop: 8,
+    paddingBottom: 0,
     backgroundColor: `${palette.bgGray}`,
     borderRadius: 10,
   },
