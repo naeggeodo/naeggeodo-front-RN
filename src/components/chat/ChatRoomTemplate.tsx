@@ -15,6 +15,7 @@ import palette from '../../styles/palette';
 import Plus from '../../assets/icons/plus.svg';
 import Send from '../../assets/icons/send.svg';
 import ArrowRight from '../../assets/icons/arrow_right.svg';
+import DismissKeyboardView from '../common/DissmissKeyboardView';
 
 const ChatRoomTemplate = ({
   navigation,
@@ -30,37 +31,37 @@ const ChatRoomTemplate = ({
   }, [navigation, route]);
 
   return (
-    <SafeAreaView style={{backgroundColor: `${palette.black}`}}>
-      <StatusBar barStyle="light-content" />
-      <View style={styles.template}>
-        <ChatRoomInfo navigation={navigation} />
+    <DismissKeyboardView>
+      <SafeAreaView style={{backgroundColor: `${palette.black}`}}>
+        <StatusBar barStyle="light-content" />
+        <View style={styles.template}>
+          <ChatRoomInfo navigation={navigation} />
 
-        <View style={styles.chattingContainer}>
-          <View style={{alignItems: 'center'}}>
-            <Pressable style={styles.storeInfoButton}>
-              <Text>가게정보 보러가기</Text>
-              <ArrowRight />
+          <View style={styles.chattingContainer}>
+            <View style={{alignItems: 'center'}}>
+              <Pressable style={styles.storeInfoButton}>
+                <Text>가게정보 보러가기</Text>
+                <ArrowRight />
+              </Pressable>
+            </View>
+          </View>
+          <View style={styles.textInputContainer}>
+            <Pressable style={styles.pressableStyle}>
+              <Plus />
+            </Pressable>
+            <TextInput style={styles.textInputStyle} />
+            <Pressable style={styles.pressableStyle}>
+              <Send />
             </Pressable>
           </View>
         </View>
-
-        <View style={styles.textInputContainer}>
-          <Pressable style={styles.pressableStyle}>
-            <Plus />
-          </Pressable>
-          <TextInput style={styles.textInputStyle} />
-          <Pressable style={styles.pressableStyle}>
-            <Send />
-          </Pressable>
-        </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </DismissKeyboardView>
   );
 };
 
 const styles = StyleSheet.create({
   template: {
-    height: '100%',
     backgroundColor: '#ffffff',
   },
   chattingContainer: {
