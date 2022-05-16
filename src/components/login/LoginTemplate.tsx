@@ -35,8 +35,6 @@ const LoginTemplate = () => {
   );
 };
 
-export default LoginTemplate;
-
 const styles = StyleSheet.create({
   container: {
     height: '100%',
@@ -87,3 +85,5 @@ const styles = StyleSheet.create({
     color: `${palette.DarkGray}`,
   },
 });
+
+export default LoginTemplate;

@@ -36,6 +36,10 @@
 	<key>KAKAO_APP_KEY</key>
   <string>50999d1a763796350d37045c83308374</string>
   <key>LSApplicationQueriesSchemes</key>
+	<array>
+    <string>naversearchapp</string>
+    <string>naversearchthirdlogin</string>
+  </array>
   <array>
   <string>kakaokompassauth</string>
   <string>storykompassauth</string>
