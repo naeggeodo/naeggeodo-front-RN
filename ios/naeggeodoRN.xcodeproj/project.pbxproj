@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* naeggeodoRNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* naeggeodoRNTests.m */; };
+		047295D2E6E1445BB7CEFAFC /* SpoqaHanSansNeo-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = C60E977023C14EA59B257069 /* SpoqaHanSansNeo-Regular.woff */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		6172F2D35A4C3AA820D92908 /* libPods-naeggeodoRN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-naeggeodoRN.a */; };
 		7EF68E3733C33B6898317E18 /* libPods-naeggeodoRN-naeggeodoRNTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-naeggeodoRN-naeggeodoRNTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		98B291EA69BD4081BC25BF81 /* SpoqaHanSansNeo-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = ABB0455CF3A944349CD9AC0B /* SpoqaHanSansNeo-Bold.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +42,10 @@
 		6423831EA8574132BED9D8CC /* libPods-naeggeodoRN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-naeggeodoRN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig"; path = "Target Support Files/Pods-naeggeodoRN-naeggeodoRNTests/Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = naeggeodoRN/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ABB0455CF3A944349CD9AC0B /* SpoqaHanSansNeo-Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Bold.woff"; path = "../src/assets/fonts/SpoqaHanSansNeo-Bold.woff"; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-naeggeodoRN-naeggeodoRNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-naeggeodoRN-naeggeodoRNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A881CF5CF3F2B244570E2A /* Pods-naeggeodoRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-naeggeodoRN.debug.xcconfig"; path = "Target Support Files/Pods-naeggeodoRN/Pods-naeggeodoRN.debug.xcconfig"; sourceTree = "<group>"; };
+		C60E977023C14EA59B257069 /* SpoqaHanSansNeo-Regular.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Regular.woff"; path = "../src/assets/fonts/SpoqaHanSansNeo-Regular.woff"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-naeggeodoRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-naeggeodoRN.release.xcconfig"; path = "Target Support Files/Pods-naeggeodoRN/Pods-naeggeodoRN.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -122,6 +126,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E233CBF5F47BEE60B243DCF8 /* Pods */,
+				CAAB031B22CF4ED5BCD6E4CA /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -137,6 +142,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CAAB031B22CF4ED5BCD6E4CA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ABB0455CF3A944349CD9AC0B /* SpoqaHanSansNeo-Bold.woff */,
+				C60E977023C14EA59B257069 /* SpoqaHanSansNeo-Regular.woff */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +159,6 @@
 				6C97AB639B58BBB4B15BBE30 /* Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-naeggeodoRN-naeggeodoRNTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -243,6 +256,8 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				98B291EA69BD4081BC25BF81 /* SpoqaHanSansNeo-Bold.woff in Resources */,
+				047295D2E6E1445BB7CEFAFC /* SpoqaHanSansNeo-Regular.woff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +465,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = naeggeodoRN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,6 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = naeggeodoRN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
