@@ -13,8 +13,6 @@ const AppleLoginButton = () => {
   );
 };
 
-export default AppleLoginButton;
-
 const styles = StyleSheet.create({
   loginButton: {
     position: 'relative',
@@ -35,3 +33,5 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
+
+export default AppleLoginButton;
