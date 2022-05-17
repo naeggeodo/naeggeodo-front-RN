@@ -42,10 +42,10 @@
 		6423831EA8574132BED9D8CC /* libPods-naeggeodoRN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-naeggeodoRN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig"; path = "Target Support Files/Pods-naeggeodoRN-naeggeodoRNTests/Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = naeggeodoRN/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ABB0455CF3A944349CD9AC0B /* SpoqaHanSansNeo-Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Bold.woff"; path = "../src/assets/fonts/SpoqaHanSansNeo-Bold.woff"; sourceTree = "<group>"; };
+		ABB0455CF3A944349CD9AC0B /* SpoqaHanSansNeo-Bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Bold.woff"; path = "../src/assets/fonts/SpoqaHanSansNeo-Bold.woff"; sourceTree = "<group>"; };
 		ABFE59519B596E51CEFDCCC0 /* libPods-naeggeodoRN-naeggeodoRNTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-naeggeodoRN-naeggeodoRNTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A881CF5CF3F2B244570E2A /* Pods-naeggeodoRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-naeggeodoRN.debug.xcconfig"; path = "Target Support Files/Pods-naeggeodoRN/Pods-naeggeodoRN.debug.xcconfig"; sourceTree = "<group>"; };
-		C60E977023C14EA59B257069 /* SpoqaHanSansNeo-Regular.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Regular.woff"; path = "../src/assets/fonts/SpoqaHanSansNeo-Regular.woff"; sourceTree = "<group>"; };
+		C60E977023C14EA59B257069 /* SpoqaHanSansNeo-Regular.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Regular.woff"; path = "../src/assets/fonts/SpoqaHanSansNeo-Regular.woff"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-naeggeodoRN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-naeggeodoRN.release.xcconfig"; path = "Target Support Files/Pods-naeggeodoRN/Pods-naeggeodoRN.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -149,7 +149,6 @@
 				C60E977023C14EA59B257069 /* SpoqaHanSansNeo-Regular.woff */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
@@ -160,7 +159,6 @@
 				6C97AB639B58BBB4B15BBE30 /* Pods-naeggeodoRN-naeggeodoRNTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-naeggeodoRN-naeggeodoRNTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -467,6 +465,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = naeggeodoRN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -492,6 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = naeggeodoRN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
