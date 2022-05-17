@@ -1,7 +1,5 @@
 import {
-  Platform,
   Pressable,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -40,11 +38,7 @@ const ChatRoomTemplate = ({
       <ChatRoomInfo navigation={navigation} />
       <StatusBar barStyle="light-content" />
       <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginTop: 20,
-        }}>
+        style={{flexDirection: 'row', justifyContent: 'center', marginTop: 20}}>
         <Pressable style={styles.storeInfoButton}>
           <Text>가게정보 보러가기</Text>
           <ArrowRight />
@@ -56,21 +50,19 @@ const ChatRoomTemplate = ({
           backgroundColor: `${palette.bgGray}`,
           flex: 1,
         }}>
-        <ScrollView
-          style={styles.chattingHistory}
-          showsVerticalScrollIndicator={false}>
-          <MyChatItem />
-          <OtherChatItem />
-          <MyChatItem />
-          <OtherChatItem />
-          <MyChatItem />
-          <OtherChatItem />
-          <MyChatItem />
-          <OtherChatItem />
-          <MyChatItem />
-          <OtherChatItem />
-          <MyChatItem />
-        </ScrollView>
+        <View style={{flex: 1, backgroundColor: `${palette.mainOrange}`}}>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+          <Text>hello</Text>
+        </View>
         <View style={styles.textInputContainer}>
           <Pressable style={styles.pressableStyle}>
             <Plus />
@@ -105,20 +97,13 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   chattingHistory: {
-    flex: 1,
+    height: '80%',
+    overflow: 'scroll',
+    backgroundColor: `${palette.bgGray}`,
+
     paddingHorizontal: 16,
-    backgroundColor: `${palette.mainOrange}`,
-
-    ...Platform.select({
-      ios: {
-        paddingVertical: 0,
-      },
-      android: {
-        paddingVertical: 10,
-      },
-    }),
+    paddingVertical: 17,
   },
-
   textInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',

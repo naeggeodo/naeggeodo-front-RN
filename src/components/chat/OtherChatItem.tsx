@@ -6,32 +6,27 @@ import palette from '../../styles/palette';
 const OtherChatItem = () => {
   return (
     <View style={styles.container}>
-      <Text>산본동 아기참새</Text>
-      <View style={{flexDirection: 'row'}}>
-        <View style={styles.thumbnailWrapper}>
-          <Thumbnail />
-        </View>
+      <View style={styles.thumbnailWrapper}>
+        <Thumbnail />
+      </View>
 
-        <View style={styles.chatItem}>
-          <Text style={styles.chatText}>안녕하세요! 주문메뉴 골라주세요.</Text>
-        </View>
+      <View style={styles.chatItem}>
+        <Text style={styles.chatText}>안녕하세요! 주문메뉴 골라주세요.</Text>
+      </View>
 
-        <View style={styles.timeWrapper}>
-          <Text style={styles.timeText}>오후 3:30</Text>
-        </View>
+      <View style={styles.timeWrapper}>
+        <Text style={styles.timeText}>오후 3:30</Text>
       </View>
     </View>
   );
 };
 
+export default OtherChatItem;
+
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
     paddingBottom: 10,
-  },
-  userName: {
-    fontWeight: '400',
-    fontSize: 12,
-    color: `${palette.black}`,
   },
   thumbnailWrapper: {justifyContent: 'flex-end'},
   chatItem: {
@@ -67,5 +62,3 @@ const styles = StyleSheet.create({
     color: `${palette.DarkGray}`,
   },
 });
-
-export default OtherChatItem;
