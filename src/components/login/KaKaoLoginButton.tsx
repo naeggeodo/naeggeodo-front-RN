@@ -16,11 +16,20 @@ const KaKaoLoginButton = () => {
   const signInWithKakao = async (): Promise<void> => {
     const token: KakaoOAuthToken = await login();
 
+    console.log(token, 'eddy');
+
     setResult(JSON.stringify(token));
   };
 
+  const getProfile = async (): Promise<void> => {
+    const profile = await getKakaoProfile();
+    console.log(profile);
+
+    setResult(JSON.stringify(profile));
+  };
+
   return (
-    <Pressable style={styles.loginButton} onPress={signInWithKakao}>
+    <Pressable style={styles.loginButton} onPress={getProfile}>
       <KaKao_talk />
       <Text style={styles.loginText}>카카오 계정으로 로그인</Text>
     </Pressable>
