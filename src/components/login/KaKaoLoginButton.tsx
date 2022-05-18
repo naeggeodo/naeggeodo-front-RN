@@ -14,9 +14,10 @@ const KaKaoLoginButton = () => {
   const [result, setResult] = useState<string>('');
 
   const signInWithKakao = async (): Promise<void> => {
+    console.log('loginstart');
     const token: KakaoOAuthToken = await login();
 
-    console.log(token, 'eddy');
+    console.log(token, 'loginend');
 
     setResult(JSON.stringify(token));
   };
@@ -29,7 +30,7 @@ const KaKaoLoginButton = () => {
   };
 
   return (
-    <Pressable style={styles.loginButton} onPress={getProfile}>
+    <Pressable style={styles.loginButton} onPress={signInWithKakao}>
       <KaKao_talk />
       <Text style={styles.loginText}>카카오 계정으로 로그인</Text>
     </Pressable>
