@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {ChatRoomResponse} from './chatRoom';
 
 export type Tag = {
   msg: string;
@@ -7,10 +8,12 @@ export type Tag = {
 
 export interface SearchState {
   tags: Tag[];
+  chatRoomResponses: ChatRoomResponse[];
 }
 
 const initialState: SearchState = {
   tags: [],
+  chatRoomResponses: [],
 };
 
 const searchSlice = createSlice({
@@ -19,6 +22,9 @@ const searchSlice = createSlice({
   reducers: {
     getTagList(state, action) {
       state.tags = action.payload.tags;
+    },
+    getChatRooms(state, action) {
+      state.chatRoomResponses = action.payload.chatRoom;
     },
   },
 });

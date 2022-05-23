@@ -1,9 +1,8 @@
 import {
-  GestureResponderEvent,
-  Pressable,
+  NativeSyntheticEvent,
   StyleSheet,
-  Text,
   TextInput,
+  TextInputEndEditingEventData,
   View,
 } from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
@@ -15,8 +14,11 @@ import {useAppDispatch} from '../../store';
 import searchSlice, {Tag} from '../../slices/search';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/reducer';
+import {AxiosResponse} from 'axios';
+import {ChatRoomResponse} from '../../slices/chatRoom';
 
 const SearchTemplate = () => {
+  const [keyword, setKeyword] = useState<string>('');
   const [autoKeyword, setAutoKeyword] = useState('불닭치킨');
   const tags: Tag[] = useSelector((state: RootState) => state.search.tags);
   const dispatch = useAppDispatch();
@@ -39,6 +41,25 @@ const SearchTemplate = () => {
     [autoKeyword],
   );
 
+  const searchChatRooms = useCallback<
+    (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => void
+  >(
+    async e => {
+      try {
+        if (!keyword) return;
+        const response: AxiosResponse<ChatRoomResponse[]> =
+          await SearchService.getChatRooms(keyword);
+        console.log(response);
+        dispatch(searchSlice.actions.getChatRooms(response.data));
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setKeyword('');
+      }
+    },
+    [dispatch],
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.sectionStyle}>
@@ -50,6 +71,14 @@ const SearchTemplate = () => {
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically
           underlineColorAndroid="transparent"
+          multiline={true}
+          blurOnSubmit={true}
+          returnKeyType="search"
+          onEndEditing={searchChatRooms}
+          value={keyword}
+          onChange={e => {
+            setKeyword(e.nativeEvent.text);
+          }}
         />
       </View>
       <View style={styles.cardContainer}>
@@ -85,7 +114,6 @@ const styles = StyleSheet.create({
     height: 35,
   },
   inputStyle: {
-    height: 35,
     width: '90%',
     paddingVertical: 6,
     paddingHorizontal: 10,

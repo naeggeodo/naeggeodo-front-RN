@@ -14,6 +14,7 @@ export interface ChatRoomResponse {
   state: 'CREATE' | 'PROGRESS' | 'END' | 'FULL';
   title: string;
   user_id: string;
+  link: string;
 }
 
 export interface ChatRoomState {
