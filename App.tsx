@@ -26,7 +26,7 @@ export type RootStackParamList = {
 };
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
   return (
     <Provider store={store}>
       <SafeAreaProvider>

@@ -1,17 +1,36 @@
 import {
   GestureResponderEvent,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import palette from '../../styles/palette';
 import SearchGray from '../../assets/icons/searchgray.svg';
 import SearchKeyword from './SearchKeyword';
+import {SearchService} from '../../api/SearchService';
+import {useAppDispatch} from '../../store';
+import searchSlice, {Tag} from '../../slices/search';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/reducer';
 
 const SearchTemplate = () => {
   const [autoKeyword, setAutoKeyword] = useState('불닭치킨');
+  const tags: Tag[] = useSelector((state: RootState) => state.search.tags);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await SearchService.getTagList();
+        dispatch(searchSlice.actions.getTagList(response.data));
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [dispatch]);
 
   const selectAutoKeyword = useCallback<(e: any) => void>(
     e => {
@@ -34,12 +53,16 @@ const SearchTemplate = () => {
         />
       </View>
       <View style={styles.cardContainer}>
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="불닭치킨" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="닭발" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="교촌치킨" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="허니콤보" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="무료배달" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="파리바게트" />
+        {tags.length !== 0 &&
+          tags.map(tag => {
+            return (
+              <SearchKeyword
+                keyword={tag.msg}
+                key={tag.idx}
+                handlePress={selectAutoKeyword}
+              />
+            );
+          })}
       </View>
     </View>
   );
