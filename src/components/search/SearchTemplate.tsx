@@ -19,7 +19,7 @@ import {ChatRoomResponse} from '../../slices/chatRoom';
 
 const SearchTemplate = () => {
   const [keyword, setKeyword] = useState<string>('');
-  const [autoKeyword, setAutoKeyword] = useState('불닭치킨');
+  const [selected, setSelectedKeyword] = useState<string>('');
   const tags: Tag[] = useSelector((state: RootState) => state.search.tags);
   const dispatch = useAppDispatch();
 
@@ -34,11 +34,14 @@ const SearchTemplate = () => {
     })();
   }, [dispatch]);
 
-  const selectAutoKeyword = useCallback<(e: any) => void>(
-    e => {
-      console.log(e.target);
+  const selectKeyword = useCallback<(e: any, selected: string) => void>(
+    async (e, selected) => {
+      setSelectedKeyword(selected);
+      const response: AxiosResponse<ChatRoomResponse[]> =
+        await SearchService.getChatRoomsByTag(selected);
+      dispatch(searchSlice.actions.getChatRoomsByTag(response.data));
     },
-    [autoKeyword],
+    [keyword],
   );
 
   const searchChatRooms = useCallback<
@@ -86,9 +89,12 @@ const SearchTemplate = () => {
           tags.map(tag => {
             return (
               <SearchKeyword
+                selected={selected}
                 keyword={tag.msg}
                 key={tag.idx}
-                handlePress={selectAutoKeyword}
+                handlePress={(e, selected: string) =>
+                  selectKeyword(e, selected)
+                }
               />
             );
           })}

@@ -4,9 +4,12 @@ import {Tag} from '../slices/search';
 
 export class SearchService {
   static async getTagList(): Promise<AxiosResponse<Tag[]>> {
-    return ApiService.getApi('/chat-rooms/tag/most-wanted');
+    return await ApiService.getApi('/chat-rooms/tag/most-wanted');
   }
   static async getChatRooms(keyword: string) {
-    return ApiService.getApi(`/chat-rooms/search/${keyword}`);
+    return await ApiService.getApi(`/chat-rooms/search/${keyword}`);
+  }
+  static async getChatRoomsByTag(tag: string) {
+    return await ApiService.getApi(`/chat-rooms/tag/${tag}`);
   }
 }

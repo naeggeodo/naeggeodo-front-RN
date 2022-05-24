@@ -26,6 +26,9 @@ const searchSlice = createSlice({
     getChatRooms(state, action) {
       state.chatRoomResponses = action.payload.chatRoom;
     },
+    getChatRoomsByTag(state, action) {
+      state.chatRoomResponses = action.payload.chatRoom;
+    },
   },
 });
 
