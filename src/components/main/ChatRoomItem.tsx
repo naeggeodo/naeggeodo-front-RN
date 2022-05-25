@@ -22,8 +22,8 @@ const ChatRoomItem = ({
   maxCount: number;
   currentCount: number;
   createDate: string;
-  navigation: any;
-  route: any;
+  navigation?: any;
+  route?: any;
 }) => {
   const timeCalculator = new TimeCalculator(createDate);
 

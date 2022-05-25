@@ -7,7 +7,8 @@ export class SearchService {
     return await ApiService.getApi('/chat-rooms/tag/most-wanted');
   }
   static async getChatRooms(keyword: string) {
-    return await ApiService.getApi(`/chat-rooms/search/${keyword}`);
+    console.log(encodeURI(keyword));
+    return await ApiService.getApi(encodeURI(`/chat-rooms/search/${keyword}`));
   }
   static async getChatRoomsByTag(tag: string) {
     return await ApiService.getApi(`/chat-rooms/tag/${tag}`);

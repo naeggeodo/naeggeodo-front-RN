@@ -1,4 +1,5 @@
 import {
+  FlatList,
   NativeSyntheticEvent,
   StyleSheet,
   TextInput,
@@ -16,11 +17,16 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../store/reducer';
 import {AxiosResponse} from 'axios';
 import {ChatRoomResponse} from '../../slices/chatRoom';
+import ChatRoomItem from '../main/ChatRoomItem';
 
 const SearchTemplate = () => {
+  const ITEM_HEIGHT = 110;
   const [keyword, setKeyword] = useState<string>('');
   const [selected, setSelectedKeyword] = useState<string>('');
   const tags: Tag[] = useSelector((state: RootState) => state.search.tags);
+  const chatRooms = useSelector(
+    (state: RootState) => state.search.chatRoomResponses,
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -49,18 +55,37 @@ const SearchTemplate = () => {
   >(
     async e => {
       try {
-        if (!keyword) return;
         const response: AxiosResponse<ChatRoomResponse[]> =
-          await SearchService.getChatRooms(keyword);
-        console.log(response);
+          await SearchService.getChatRooms(e.nativeEvent.text);
         dispatch(searchSlice.actions.getChatRooms(response.data));
       } catch (err) {
         console.log(err);
-      } finally {
-        setKeyword('');
       }
     },
     [dispatch],
+  );
+
+  const renderItem = useCallback(({item}: {item: ChatRoomResponse}) => {
+    return (
+      <ChatRoomItem
+        id={item.id}
+        title={item.title}
+        maxCount={item.maxCount}
+        currentCount={item.currentCount}
+        createDate={item.createDate}
+      />
+    );
+  }, []);
+
+  const keyExtractor = useCallback(item => item.id.toString(), []);
+
+  const getItemLayout = useCallback(
+    (data, index) => ({
+      length: ITEM_HEIGHT,
+      offset: ITEM_HEIGHT * index,
+      index,
+    }),
+    [],
   );
 
   return (
@@ -77,28 +102,40 @@ const SearchTemplate = () => {
           multiline={true}
           blurOnSubmit={true}
           returnKeyType="search"
-          onEndEditing={searchChatRooms}
+          onSubmitEditing={searchChatRooms}
           value={keyword}
           onChange={e => {
             setKeyword(e.nativeEvent.text);
           }}
         />
       </View>
-      <View style={styles.cardContainer}>
-        {tags.length !== 0 &&
-          tags.map(tag => {
-            return (
-              <SearchKeyword
-                selected={selected}
-                keyword={tag.msg}
-                key={tag.idx}
-                handlePress={(e, selected: string) =>
-                  selectKeyword(e, selected)
-                }
-              />
-            );
-          })}
-      </View>
+      {chatRooms.length === 0 && (
+        <View style={styles.cardContainer}>
+          {tags.length !== 0 &&
+            tags.map(tag => {
+              return (
+                <SearchKeyword
+                  selected={selected}
+                  keyword={tag.msg}
+                  key={tag.idx}
+                  handlePress={(e, selected: string) =>
+                    selectKeyword(e, selected)
+                  }
+                />
+              );
+            })}
+        </View>
+      )}
+      {chatRooms.length !== 0 && (
+        <FlatList
+          style={{marginBottom: '25%'}}
+          keyExtractor={keyExtractor}
+          data={chatRooms}
+          renderItem={renderItem}
+          getItemLayout={getItemLayout}
+          removeClippedSubviews={true}
+        />
+      )}
     </View>
   );
 };
