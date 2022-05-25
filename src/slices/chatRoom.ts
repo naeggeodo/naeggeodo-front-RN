@@ -18,11 +18,11 @@ export interface ChatRoomResponse {
 }
 
 export interface ChatRoomState {
-  chatRooms: ChatRoomResponse[];
+  chatRoom: ChatRoomResponse[];
 }
 
 const initialState: ChatRoomState = {
-  chatRooms: [],
+  chatRoom: [],
 };
 
 const chatRoomSlice = createSlice({
@@ -30,7 +30,7 @@ const chatRoomSlice = createSlice({
   initialState,
   reducers: {
     getChatRooms(state, action: PayloadAction<ChatRoomState>) {
-      state.chatRooms = action.payload.chatRooms;
+      state.chatRoom = action.payload.chatRoom;
     },
   },
 });

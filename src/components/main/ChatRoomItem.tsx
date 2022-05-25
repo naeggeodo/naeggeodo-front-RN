@@ -1,5 +1,5 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import palette from '../../styles/palette';
 import fonts from '../../styles/fonts';
@@ -27,6 +27,10 @@ const ChatRoomItem = ({
 }) => {
   const timeCalculator = new TimeCalculator(createDate);
 
+  const navigateChatRoom = useCallback(() => {
+    navigation.navigate('chatRoom', {id});
+  }, []);
+
   return (
     <View style={styles.container}>
       <Pressable style={styles.pressableContainer}>
@@ -47,7 +51,7 @@ const ChatRoomItem = ({
               </Text>
             </View>
             <Pressable
-              onPress={() => navigation.navigate('chatRoom', {id})}
+              onPress={navigateChatRoom}
               style={styles.orderTogetherContainer}>
               <Text style={styles.orderTogetherText}>함께 주문하기</Text>
               <BlacKArrow width={14} height={20} style={{marginLeft: 2}} />

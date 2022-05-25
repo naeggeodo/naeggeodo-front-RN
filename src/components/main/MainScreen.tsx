@@ -1,5 +1,5 @@
 import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import axios, {AxiosResponse} from 'axios';
 
 import palette from '../../styles/palette';
@@ -31,7 +31,7 @@ const MainScreen = ({
   const {webviewIsOpened, openWebview, handleLocation, closeWebview} =
     useDispatchSearchLocation();
   const dispatch = useAppDispatch();
-  const chatRooms = useSelector((state: RootState) => state.chatRoom.chatRooms);
+  const chatRooms = useSelector((state: RootState) => state.chatRoom.chatRoom);
 
   useEffect(() => {
     checkTab(route);
@@ -53,25 +53,36 @@ const MainScreen = ({
     })();
   }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response: AxiosResponse<{['chat-room']: ChatRoomResponse[]}> =
-  //         await axios.get(
-  //           'http://3.38.33.232:8080/chat/rooms?buildingcode=123',
-  //         );
-  //       dispatch(
-  //         chatRoomSlice.actions.getChatRooms({
-  //           chatRooms: response.data['chat-room'],
-  //         }),
-  //       );
-  //     } catch (err) {
-  //       console.error('error #%d', err);
-  //     }
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const response: AxiosResponse<{chatRoom: ChatRoomResponse[]}> =
+          await axios.get(
+            encodeURI('http://3.38.33.232:8080/chat-rooms?buildingCode=서울'),
+          );
+        dispatch(chatRoomSlice.actions.getChatRooms(response.data));
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, []);
 
-  console.log(chatRooms);
+  const keyExtractor = useCallback(item => item.id.toString(), []);
+
+  const renderItem = useCallback(({item}: {item: ChatRoomResponse}) => {
+    return (
+      <ChatRoomItem
+        id={item.id}
+        title={item.title}
+        maxCount={item.maxCount}
+        currentCount={item.currentCount}
+        createDate={item.createDate}
+        route={route}
+        navigation={navigation}
+      />
+    );
+  }, []);
+
   return (
     <SafeAreaView style={{backgroundColor: '#ffffff'}}>
       <View style={styles.container}>
@@ -94,20 +105,14 @@ const MainScreen = ({
 
         {chatRooms.length !== 0 ? (
           <FlatList
-            style={{paddingHorizontal: 30, marginBottom: '25%'}}
-            keyExtractor={item => item.id + ''}
+            style={{
+              paddingHorizontal: 30,
+              marginBottom: '25%',
+            }}
+            keyExtractor={keyExtractor}
+            removeClippedSubviews={true}
             data={chatRooms}
-            renderItem={({item}: {item: ChatRoomResponse}) => (
-              <ChatRoomItem
-                navigation={navigation}
-                id={item.id}
-                title={item.title}
-                maxCount={item.maxCount}
-                currentCount={item.currentCount}
-                createDate={item.createDate}
-                route={route}
-              />
-            )}
+            renderItem={renderItem}
           />
         ) : (
           <View style={styles.nonItemContainer}>
@@ -125,7 +130,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     paddingBottom: 200,
     width: '100%',
-    height: '100%',
   },
 
   buttonContainer: {
