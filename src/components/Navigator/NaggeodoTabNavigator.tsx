@@ -12,7 +12,7 @@ import ChatBlack from '../../assets/icons/chatblack.svg';
 import MoreGray from '../../assets/icons/moregray.svg';
 import MoreBlack from '../../assets/icons/moreblack.svg';
 import MainStack from '../../pages/MainStack';
-import MorePage from '../../pages/MorePage';
+import MoreScreen from '../../pages/MoreScreen';
 import SearchPage from '../../pages/SearchPage';
 import fonts from '../../styles/fonts';
 import palette from '../../styles/palette';
@@ -88,7 +88,7 @@ const NaggeodoTabNavigator = () => {
         />
         <Tab.Screen
           name="More"
-          component={MorePage}
+          component={MoreScreen}
           options={{
             title: '더보기',
             tabBarIcon: ({focused}) => (focused ? <MoreBlack /> : <MoreGray />),

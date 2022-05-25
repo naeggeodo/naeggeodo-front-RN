@@ -1,15 +1,25 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import Burger from '../../assets/icons/burger.svg';
 import ChevronLeft from '../../assets/icons/chevronleft.svg';
 import BurgerBar from '../../assets/icons/burgerbar.svg';
 import palette from '../../styles/palette';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/reducer';
 
 const ChatRoomInfo = ({navigation}: {navigation: any}) => {
+  const moveBack = useCallback(() => {
+    navigation.goBack();
+  }, []);
+
+  const chatRoomInfo = useSelector(
+    (state: RootState) => state.chatRoom.chatRoomInfo,
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.arrowContainer}>
-        <Pressable style={{padding: 10}} onPress={() => navigation.goBack()}>
+        <Pressable style={{padding: 10}} onPress={moveBack}>
           <ChevronLeft />
         </Pressable>
         <View style={styles.titleContainer}>
@@ -18,8 +28,10 @@ const ChatRoomInfo = ({navigation}: {navigation: any}) => {
           </View>
 
           <View style={styles.textContainer}>
-            <Text style={styles.title}>버거킹 백석 이마트점</Text>
-            <Text style={styles.counter}>인원 2명 / 2명</Text>
+            <Text style={styles.title}>{chatRoomInfo?.title}</Text>
+            <Text style={styles.counter}>
+              인원 {chatRoomInfo?.currentCount}명 / {chatRoomInfo?.maxCount}명
+            </Text>
           </View>
         </View>
       </View>

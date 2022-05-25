@@ -89,30 +89,10 @@ const OrderTemplate = ({navigation}: {navigation: any}) => {
             상관없음(인원이 모집되는대로)
           </Text>
         </Pressable>
-
-        <Pressable
-          style={[
-            {...styles.buttonStyle},
-            {marginTop: 10},
-            orderType === '선택하지 않음' ? styles.selected : styles.unselected,
-          ]}
-          onPress={() => dispatchOrderType('선택하지 않음')}>
-          <Text
-            style={[
-              {...styles.buttonText},
-              orderType === '선택하지 않음'
-                ? styles.selectedText
-                : styles.unselectedText,
-            ]}>
-            선택하지 않음
-          </Text>
-        </Pressable>
       </View>
     </View>
   );
 };
-
-export default OrderTemplate;
 
 const styles = StyleSheet.create({
   container: {
@@ -166,3 +146,5 @@ const styles = StyleSheet.create({
     color: `${palette.black}`,
   },
 });
+
+export default OrderTemplate;

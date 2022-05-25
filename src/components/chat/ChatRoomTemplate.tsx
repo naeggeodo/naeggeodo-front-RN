@@ -18,6 +18,10 @@ import ArrowRight from '../../assets/icons/arrow_right.svg';
 import DismissKeyboardView from '../common/DissmissKeyboardView';
 import MyChatItem from './MyChatItem';
 import OtherChatItem from './OtherChatItem';
+import {ChatRoomService} from '../../api/ChatRoomService';
+import {AxiosResponse} from 'axios';
+import chatRoomSlice, {ChatRoomInfoResponse} from '../../slices/chatRoom';
+import {useAppDispatch} from '../../store';
 
 const ChatRoomTemplate = ({
   navigation,
@@ -25,12 +29,23 @@ const ChatRoomTemplate = ({
   checkTab,
 }: {
   navigation: any;
-  route: Route<StackProps>;
+  route: any;
   checkTab: (route: Route<StackProps>) => void;
 }) => {
+  const dispatch = useAppDispatch();
   useEffect(() => {
     checkTab(route);
   }, [navigation, route]);
+
+  useEffect(() => {
+    (async () => {
+      const response: AxiosResponse<ChatRoomInfoResponse> =
+        await ChatRoomService.getChatRoomInfo(route.params.id);
+      dispatch(chatRoomSlice.actions.getChatRoomInfo(response.data));
+    })();
+  }, []);
+
+  console.log(navigation, {route});
 
   return (
     <Fragment>

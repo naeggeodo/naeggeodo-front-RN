@@ -1,23 +1,91 @@
 import {
-  GestureResponderEvent,
+  FlatList,
+  NativeSyntheticEvent,
   StyleSheet,
-  Text,
   TextInput,
+  TextInputEndEditingEventData,
   View,
 } from 'react-native';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import palette from '../../styles/palette';
 import SearchGray from '../../assets/icons/searchgray.svg';
 import SearchKeyword from './SearchKeyword';
+import {SearchService} from '../../api/SearchService';
+import {useAppDispatch} from '../../store';
+import searchSlice, {Tag} from '../../slices/search';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/reducer';
+import {AxiosResponse} from 'axios';
+import {ChatRoomResponse} from '../../slices/chatRoom';
+import ChatRoomItem from '../main/ChatRoomItem';
 
 const SearchTemplate = () => {
-  const [autoKeyword, setAutoKeyword] = useState('불닭치킨');
+  const ITEM_HEIGHT = 110;
+  const [keyword, setKeyword] = useState<string>('');
+  const [selected, setSelectedKeyword] = useState<string>('');
+  const tags: Tag[] = useSelector((state: RootState) => state.search.tags);
+  const chatRooms = useSelector(
+    (state: RootState) => state.search.chatRoomResponses,
+  );
+  const dispatch = useAppDispatch();
 
-  const selectAutoKeyword = useCallback<(e: any) => void>(
-    e => {
-      console.log(e.target);
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await SearchService.getTagList();
+        dispatch(searchSlice.actions.getTagList(response.data));
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [dispatch]);
+
+  const selectKeyword = useCallback<(e: any, selected: string) => void>(
+    async (e, selected) => {
+      setSelectedKeyword(selected);
+      const response: AxiosResponse<ChatRoomResponse[]> =
+        await SearchService.getChatRoomsByTag(selected);
+      dispatch(searchSlice.actions.getChatRoomsByTag(response.data));
     },
-    [autoKeyword],
+    [keyword],
+  );
+
+  const searchChatRooms = useCallback<
+    (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => void
+  >(
+    async e => {
+      try {
+        const response: AxiosResponse<ChatRoomResponse[]> =
+          await SearchService.getChatRooms(e.nativeEvent.text);
+        dispatch(searchSlice.actions.getChatRooms(response.data));
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [dispatch],
+  );
+
+  const renderItem = useCallback(({item}: {item: ChatRoomResponse}) => {
+    return (
+      <ChatRoomItem
+        id={item.id}
+        title={item.title}
+        maxCount={item.maxCount}
+        currentCount={item.currentCount}
+        createDate={item.createDate}
+      />
+    );
+  }, []);
+
+  const keyExtractor = useCallback(item => item.id.toString(), []);
+
+  const getItemLayout = useCallback(
+    (data, index) => ({
+      length: ITEM_HEIGHT,
+      offset: ITEM_HEIGHT * index,
+      index,
+    }),
+    [],
   );
 
   return (
@@ -31,16 +99,43 @@ const SearchTemplate = () => {
           clearButtonMode="while-editing"
           enablesReturnKeyAutomatically
           underlineColorAndroid="transparent"
+          multiline={true}
+          blurOnSubmit={true}
+          returnKeyType="search"
+          onSubmitEditing={searchChatRooms}
+          value={keyword}
+          onChange={e => {
+            setKeyword(e.nativeEvent.text);
+          }}
         />
       </View>
-      <View style={styles.cardContainer}>
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="불닭치킨" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="닭발" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="교촌치킨" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="허니콤보" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="무료배달" />
-        <SearchKeyword handlePress={selectAutoKeyword} keyword="파리바게트" />
-      </View>
+      {chatRooms.length === 0 && (
+        <View style={styles.cardContainer}>
+          {tags.length !== 0 &&
+            tags.map(tag => {
+              return (
+                <SearchKeyword
+                  selected={selected}
+                  keyword={tag.msg}
+                  key={tag.idx}
+                  handlePress={(e, selected: string) =>
+                    selectKeyword(e, selected)
+                  }
+                />
+              );
+            })}
+        </View>
+      )}
+      {chatRooms.length !== 0 && (
+        <FlatList
+          style={{marginBottom: '25%'}}
+          keyExtractor={keyExtractor}
+          data={chatRooms}
+          renderItem={renderItem}
+          getItemLayout={getItemLayout}
+          removeClippedSubviews={true}
+        />
+      )}
     </View>
   );
 };
@@ -62,7 +157,6 @@ const styles = StyleSheet.create({
     height: 35,
   },
   inputStyle: {
-    height: 35,
     width: '90%',
     paddingVertical: 6,
     paddingHorizontal: 10,

@@ -13,8 +13,6 @@ const NaverLoginButton = () => {
   );
 };
 
-export default NaverLoginButton;
-
 const styles = StyleSheet.create({
   loginButton: {
     width: '100%',
@@ -33,3 +31,5 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
+
+export default NaverLoginButton;
